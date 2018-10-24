@@ -706,6 +706,42 @@
             "entity": "people"
           }
         ]
+      },
+      {
+        "text": "find a cheap restaurant for 12 persons that offers pizza, tacko, dosa",
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 7,
+            "end": 13,
+            "value": "low",
+            "entity": "budget"
+          },
+          {
+            "start": 28,
+            "end": 38,
+            "value": "12",
+            "entity": "people"
+          },
+          {
+            "start": 51,
+            "end": 56,
+            "value": "Italian",
+            "entity": "cuisine"
+          },
+          {
+            "start": 58,
+            "end": 63,
+            "value": "Mexican",
+            "entity": "cuisine"
+          },
+          {
+            "start": 65,
+            "end": 69,
+            "value": "South Indian",
+            "entity": "cuisine"
+          }
+        ]
       }
     ]
   }
