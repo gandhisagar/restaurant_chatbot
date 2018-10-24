@@ -1,3 +1,4 @@
+
 ## Generated Story 255706069223404498
 * greet
     - utter_greet
@@ -8,8 +9,10 @@
     - utter_ask_cuisine
 * restaurant_search{"cuisine": "chinese"}
     - slot{"cuisine": "chinese"}
+    - utter_ask_budget
+* restaurant_search{"budget": "2500"}
+    - slot{"budget": "2500"}
     - action_restaurant
-    - slot{"location": "delhi"}
     - utter_goodbye
     - export
 
@@ -23,6 +26,9 @@
     - utter_ask_cuisine
 * restaurant_search{"cuisine": "North Indian"}
     - slot{"cuisine": "North Indian"}
+    - utter_ask_budget
+* restaurant_search{"budget": "2500"}
+    - slot{"budget": "2500"}
     - action_restaurant
     - utter_goodbye
 
@@ -36,6 +42,9 @@
 	- utter_ask_cuisine
 * restaurant_search{"cuisine": "chinese"}
     - slot{"cuisine": "chinese"}
+    - utter_ask_budget
+* restaurant_search{"budget": "2500"}
+    - slot{"budget": "2500"}
     - action_restaurant
 * goodbye
     - utter_goodbye
@@ -50,6 +59,9 @@
     - utter_ask_cuisine
 * restaurant_search{"cuisine": "chinese"}
     - slot{"cuisine": "chinese"}
+    - utter_ask_budget
+* restaurant_search{"budget": "2500"}
+    - slot{"budget": "2500"}
     - action_restaurant
     - slot{"location": "delhi"}
     - export
@@ -63,7 +75,13 @@
     - utter_ask_cuisine
 * restaurant_search{"cuisine": "chinese"}
     - slot{"cuisine": "chinese"}
+    - utter_ask_budget
+* restaurant_search{"budget": "2500"}
+    - slot{"budget": "2500"}
     - action_restaurant
 * affirm
     - utter_goodbye
     - export
+
+
+

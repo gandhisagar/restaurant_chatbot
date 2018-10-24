@@ -484,6 +484,30 @@
           }
         ],
         "text": "please help me to find restaurants in pune"
+      },
+      {
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 13,
+            "end": 16,
+            "value": "2800",
+            "entity": "budget"
+          }
+        ],
+        "text": "My budget is 2800"
+      },
+      {
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 19,
+            "end": 22,
+            "value": "1500",
+            "entity": "budget"
+          }
+        ],
+        "text": "I can spend around 1500"
       }
     ],
     "regex_features": [
@@ -506,10 +530,15 @@
         ]
       },
       {
-        "value": "vegetarian",
+        "value": "Bangalore",
         "synonyms": [
-          "veggie",
-          "vegg"
+          "Bengaluru"
+        ]
+      },
+      {
+        "value": "Mumbai",
+        "synonyms": [
+          "Bombay"
         ]
       }
     ]

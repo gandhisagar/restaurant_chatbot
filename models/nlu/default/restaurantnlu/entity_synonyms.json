@@ -1,8 +1,10 @@
 {
   "chinese": "chinese",
   "chines": "chinese",
-  "veggie": "vegetarian",
-  "vegg": "vegetarian",
+  "bengaluru": "Bangalore",
+  "bombay": "Mumbai",
   "moderate": "mid",
-  "four": "4"
+  "four": "4",
+  "280": "2800",
+  "150": "1500"
 }

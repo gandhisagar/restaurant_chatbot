@@ -6,6 +6,7 @@ action_names:
 - utter_ask_howcanhelp
 - utter_ask_location
 - utter_ask_cuisine
+- utter_ask_budget
 - action_restaurant
 actions:
 - utter_greet
@@ -14,12 +15,14 @@ actions:
 - utter_ask_howcanhelp
 - utter_ask_location
 - utter_ask_cuisine
+- utter_ask_budget
 - actions.ActionSearchRestaurants
 config:
   store_entities_as_slots: true
 entities:
 - location
 - cuisine
+- budget
 intents:
 - greet
 - affirm
@@ -28,6 +31,9 @@ intents:
 - thankyou
 - restaurant_search
 slots:
+  budget:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
   cuisine:
     initial_value: null
     type: rasa_core.slots.TextSlot
@@ -35,6 +41,8 @@ slots:
     initial_value: null
     type: rasa_core.slots.TextSlot
 templates:
+  utter_ask_budget:
+  - text: What is your budget?
   utter_ask_cuisine:
   - buttons:
     - payload: Chinese
@@ -45,6 +53,10 @@ templates:
       title: South Indian
     - payload: North Indian
       title: North Indian
+    - payload: Mexican
+      title: Mexican
+    - payload: American
+      title: American
     text: what kind of cuisine would you like?
   utter_ask_howcanhelp:
   - text: how can I help you?
