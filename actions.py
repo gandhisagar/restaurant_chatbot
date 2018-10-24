@@ -46,8 +46,8 @@ class ActionSearchRestaurants(Action):
                             if entries <= 5:
                                 entries += 1
                                 response=response+ "Found "+ restaurant['restaurant']['name']+ " in "+ \
-                                         restaurant['restaurant']['location']['address'] + " with a average_cost_for_two of "+ \
-                                         str(restaurant['restaurant']['average_cost_for_two']) + "\n"
+                                         restaurant['restaurant']['location']['address'] + " has been rated "+ \
+                                         str(restaurant['restaurant']['user_rating']['aggregate_rating']) + "\n"
 
             dispatcher.utter_message("-----"+response)
             return [SlotSet('location',loc)]
