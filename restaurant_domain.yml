@@ -50,7 +50,14 @@ templates:
   utter_ask_location:
     - "In what location?"
   utter_ask_budget:
-    - "What is your budget?"
+    - text: "What price range are you looking at?"
+      buttons:
+      - title: "Lesser than Rs. 300"
+        payload: "1"
+      - title: "Rs. 300 to 700"
+        payload: "2"
+      - title: "More than 700"
+        payload: "3"
 
 actions:
 - utter_greet

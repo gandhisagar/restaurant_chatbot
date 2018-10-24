@@ -3,8 +3,17 @@
   "chines": "chinese",
   "bengaluru": "Bangalore",
   "bombay": "Mumbai",
+  "lesser than rs. 300": "1",
+  "rs. 300 to 700": "2",
+  "more than 700": "3",
   "moderate": "mid",
   "four": "4",
-  "280": "2800",
-  "150": "1500"
+  "north indian": "North Indian",
+  "south indian": "South Indian",
+  "10 people": "10",
+  "cheap ": "low",
+  "12 persons": "12",
+  "pizza": "Italian",
+  "tacko": "Mexican",
+  "dosa": "South Indian"
 }

@@ -290,6 +290,42 @@
         "entities": [
           {
             "start": 0,
+            "end": 19,
+            "value": "1",
+            "entity": "budget"
+          }
+        ],
+        "text": "Lesser than Rs. 300"
+      },
+      {
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 0,
+            "end": 14,
+            "value": "2",
+            "entity": "budget"
+          }
+        ],
+        "text": "Rs. 300 to 700"
+      },
+      {
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 0,
+            "end": 13,
+            "value": "3",
+            "entity": "budget"
+          }
+        ],
+        "text": "More than 700"
+      },
+      {
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 0,
             "end": 9,
             "value": "Lithuania",
             "entity": "location"
@@ -486,28 +522,166 @@
         "text": "please help me to find restaurants in pune"
       },
       {
+        "intent": "greet",
+        "text": "whazzup"
+      },
+      {
+        "intent": "affirm",
+        "text": "go for it"
+      },
+      {
+        "intent": "affirm",
+        "text": "okay"
+      },
+      {
+        "intent": "affirm",
+        "text": "go ahead"
+      },
+      {
+        "intent": "affirm",
+        "text": "go on"
+      },
+      {
+        "intent": "affirm",
+        "text": "affirmative"
+      },
+      {
+        "intent": "affirm",
+        "text": "ya"
+      },
+      {
+        "intent": "affirm",
+        "text": "sure"
+      },
+      {
         "intent": "restaurant_search",
-        "entities": [
-          {
-            "start": 13,
-            "end": 16,
-            "value": "2800",
-            "entity": "budget"
-          }
-        ],
-        "text": "My budget is 2800"
+        "text": "I want to dine out"
       },
       {
         "intent": "restaurant_search",
         "entities": [
           {
-            "start": 19,
-            "end": 22,
-            "value": "1500",
+            "start": 5,
+            "end": 11,
+            "value": "cheap ",
             "entity": "budget"
           }
         ],
-        "text": "I can spend around 1500"
+        "text": "show cheap dine out joints nearby"
+      },
+      {
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 24,
+            "end": 29,
+            "value": "delhi",
+            "entity": "location"
+          }
+        ],
+        "text": "search for fine dine in delhi"
+      },
+      {
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 22,
+            "end": 29,
+            "value": "gurgaon",
+            "entity": "location"
+          }
+        ],
+        "text": "show eating joints in gurgaon"
+      },
+      {
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 36,
+            "end": 40,
+            "value": "750 ",
+            "entity": "price"
+          },
+          {
+            "start": 26,
+            "end": 32,
+            "value": "noida ",
+            "entity": "location"
+          },
+          {
+            "start": 51,
+            "end": 63,
+            "value": "North Indian",
+            "entity": "cuisine"
+          }
+        ],
+        "text": "show dining places around noida for 750 per person north indian"
+      },
+      {
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 38,
+            "end": 45,
+            "value": "mexican",
+            "entity": "cuisine"
+          },
+          {
+            "start": 47,
+            "end": 55,
+            "value": "italian ",
+            "entity": "cuisine"
+          },
+          {
+            "start": 59,
+            "end": 71,
+            "value": "South Indian",
+            "entity": "cuisine"
+          },
+          {
+            "start": 92,
+            "end": 101,
+            "value": "10",
+            "entity": "people"
+          }
+        ],
+        "text": "find a good eating outlet that serves mexican, italian and south indian and can accommodate 10 people"
+      },
+      {
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 7,
+            "end": 13,
+            "value": "low",
+            "entity": "budget"
+          },
+          {
+            "start": 28,
+            "end": 38,
+            "value": "12",
+            "entity": "people"
+          },
+          {
+            "start": 51,
+            "end": 56,
+            "value": "Italian",
+            "entity": "cuisine"
+          },
+          {
+            "start": 58,
+            "end": 63,
+            "value": "Mexican",
+            "entity": "cuisine"
+          },
+          {
+            "start": 65,
+            "end": 69,
+            "value": "South Indian",
+            "entity": "cuisine"
+          }
+        ],
+        "text": "find a cheap restaurant for 12 persons that offers pizza, tacko, dosa"
       }
     ],
     "regex_features": [
