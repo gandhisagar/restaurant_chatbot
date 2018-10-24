@@ -1,1 +1,1 @@
-# restaurant_chatbot
+# Restaurant search chatbot
