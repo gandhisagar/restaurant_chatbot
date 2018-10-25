@@ -718,6 +718,54 @@
           }
         ],
         "text": "look for moderate restaurants which offers continental culinary around Agra for 4"
+      },
+      {
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 5,
+            "end": 15,
+            "value": "expensive",
+            "entity": "budget"
+          },
+          {
+            "start": 15,
+            "end": 27,
+            "value": "South Indian",
+            "entity": "cuisine"
+          },
+          {
+            "start": 42,
+            "end": 52,
+            "value": "Chandigarh",
+            "entity": "location"
+          }
+        ],
+        "text": "find expensive south indian restaurant in chandigarh"
+      },
+      {
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 10,
+            "end": 21,
+            "value": "moderate",
+            "entity": "budget"
+          },
+          {
+            "start": 33,
+            "end": 42,
+            "value": "American",
+            "entity": "cuisine"
+          },
+          {
+            "start": 50,
+            "end": 56,
+            "value": "Bhopal",
+            "entity": "location"
+          }
+        ],
+        "text": "find some good eating joints for American food in Bhopal"
       }
     ],
     "regex_features": [
