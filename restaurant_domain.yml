@@ -53,11 +53,11 @@ templates:
     - text: "What price range are you looking at?"
       buttons:
       - title: "Lesser than Rs. 300"
-        payload: "1"
+        payload: "cheap"
       - title: "Rs. 300 to 700"
-        payload: "2"
+        payload: "moderate"
       - title: "More than 700"
-        payload: "3"
+        payload: "expensive"
 
 actions:
 - utter_greet

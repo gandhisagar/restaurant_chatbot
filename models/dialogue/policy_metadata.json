@@ -3,17 +3,17 @@
     "action_listen": {
       "slots": [
         "cuisine",
-        "location",
-        "budget"
-      ]
-    },
-    "action_restaurant": {
-      "slots": [
+        "budget",
         "location"
       ]
     },
     "utter_goodbye": {
       "slots": []
+    },
+    "action_restaurant": {
+      "slots": [
+        "location"
+      ]
     }
   },
   "rasa_core": "0.10.1",

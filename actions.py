@@ -27,9 +27,9 @@ class ActionSearchRestaurants(Action):
             print ("budget: ", budget_code)
             print ("Budget is: ", budget_code)
 
-            if int(budget_code) == 1:
+            if budget_code == "cheap":
                 budget_higher_limit = 300
-            elif int(budget_code) == 2:
+            elif budget_code == "moderate":
                 budget_lower_limit = 300
                 budget_higher_limit = 700
             else:

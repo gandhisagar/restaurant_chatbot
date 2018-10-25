@@ -10,8 +10,8 @@
 * restaurant_search{"cuisine": "chinese"}
     - slot{"cuisine": "chinese"}
     - utter_ask_budget
-* restaurant_search{"budget": "2500"}
-    - slot{"budget": "2500"}
+* restaurant_search{"budget": "expensive"}
+    - slot{"budget": "expensive"}
     - action_restaurant
     - utter_goodbye
     - export
@@ -27,8 +27,8 @@
 * restaurant_search{"cuisine": "North Indian"}
     - slot{"cuisine": "North Indian"}
     - utter_ask_budget
-* restaurant_search{"budget": "2500"}
-    - slot{"budget": "2500"}
+* restaurant_search{"budget": "moderate"}
+    - slot{"budget": "moderate"}
     - action_restaurant
     - utter_goodbye
 
@@ -43,8 +43,8 @@
 * restaurant_search{"cuisine": "chinese"}
     - slot{"cuisine": "chinese"}
     - utter_ask_budget
-* restaurant_search{"budget": "2500"}
-    - slot{"budget": "2500"}
+* restaurant_search{"budget": "cheap"}
+    - slot{"budget": "cheap"}
     - action_restaurant
 * goodbye
     - utter_goodbye
@@ -60,8 +60,8 @@
 * restaurant_search{"cuisine": "chinese"}
     - slot{"cuisine": "chinese"}
     - utter_ask_budget
-* restaurant_search{"budget": "2500"}
-    - slot{"budget": "2500"}
+* restaurant_search{"budget": "expensive"}
+    - slot{"budget": "expensive"}
     - action_restaurant
     - slot{"location": "delhi"}
     - export
@@ -76,8 +76,8 @@
 * restaurant_search{"cuisine": "chinese"}
     - slot{"cuisine": "chinese"}
     - utter_ask_budget
-* restaurant_search{"budget": "2500"}
-    - slot{"budget": "2500"}
+* restaurant_search{"budget": "moderate"}
+    - slot{"budget": "moderate"}
     - action_restaurant
 * affirm
     - utter_goodbye

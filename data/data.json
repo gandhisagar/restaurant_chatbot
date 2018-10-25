@@ -341,42 +341,6 @@
         ]
       },
       {
-        "text": "Lesser than Rs. 300",
-        "intent": "restaurant_search",
-        "entities": [
-          {
-            "start": 0,
-            "end": 19,
-            "value": "1",
-            "entity": "budget"
-          }
-        ]
-      },
-      {
-        "text": "Rs. 300 to 700",
-        "intent": "restaurant_search",
-        "entities": [
-          {
-            "start": 0,
-            "end": 14,
-            "value": "2",
-            "entity": "budget"
-          }
-        ]
-      },
-      {
-        "text": "More than 700",
-        "intent": "restaurant_search",
-        "entities": [
-          {
-            "start": 0,
-            "end": 13,
-            "value": "3",
-            "entity": "budget"
-          }
-        ]
-      },
-      {
         "text": "Lithuania",
         "intent": "restaurant_search",
         "entities": [
@@ -752,6 +716,78 @@
             "end": 69,
             "value": "South Indian",
             "entity": "cuisine"
+          }
+        ]
+      },
+      {
+        "text": "search cheap mexican restaurants in delhi",
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 7,
+            "end": 13,
+            "value": "cheap ",
+            "entity": "budget"
+          },
+          {
+            "start": 13,
+            "end": 21,
+            "value": "Mexican",
+            "entity": "cuisine"
+          },
+          {
+            "start": 36,
+            "end": 41,
+            "value": "Delhi",
+            "entity": "location"
+          }
+        ]
+      },
+      {
+        "text": "find fine-dine joints near gurgaon",
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 5,
+            "end": 14,
+            "value": "expensive",
+            "entity": "budget"
+          },
+          {
+            "start": 27,
+            "end": 34,
+            "value": "gurgaon",
+            "entity": "location"
+          }
+        ]
+      },
+      {
+        "text": "look for moderate restaurants which offers continental culinary around Agra for 4",
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 9,
+            "end": 18,
+            "value": "moderate ",
+            "entity": "budget"
+          },
+          {
+            "start": 43,
+            "end": 55,
+            "value": "American",
+            "entity": "cuisine"
+          },
+          {
+            "start": 71,
+            "end": 75,
+            "value": "Agra",
+            "entity": "location"
+          },
+          {
+            "start": 76,
+            "end": 81,
+            "value": "4",
+            "entity": "people"
           }
         ]
       }

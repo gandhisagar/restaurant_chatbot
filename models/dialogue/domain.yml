@@ -43,11 +43,11 @@ slots:
 templates:
   utter_ask_budget:
   - buttons:
-    - payload: '1'
+    - payload: cheap
       title: Lesser than Rs. 300
-    - payload: '2'
+    - payload: moderate
       title: Rs. 300 to 700
-    - payload: '3'
+    - payload: expensive
       title: More than 700
     text: What price range are you looking at?
   utter_ask_cuisine:
