@@ -317,6 +317,78 @@
         ]
       },
       {
+        "text": "Cheap",
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "cheap",
+            "entity": "budget"
+          }
+        ]
+      },
+      {
+        "text": "cheap",
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "cheap",
+            "entity": "budget"
+          }
+        ]
+      },
+      {
+        "text": "Moderate",
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 0,
+            "end": 7,
+            "value": "moderate",
+            "entity": "budget"
+          }
+        ]
+      },
+      {
+        "text": "moderate",
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 0,
+            "end": 7,
+            "value": "moderate",
+            "entity": "budget"
+          }
+        ]
+      },
+      {
+        "text": "Expensive",
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 0,
+            "end": 8,
+            "value": "expensive",
+            "entity": "budget"
+          }
+        ]
+      },
+      {
+        "text": "expensive",
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 0,
+            "end": 8,
+            "value": "expensive",
+            "entity": "budget"
+          }
+        ]
+      },
+      {
         "text": "Chinese",
         "intent": "restaurant_search",
         "entities": [
@@ -599,7 +671,31 @@
         "entities": [
           {
             "start": 5,
-            "end": 11,
+            "end": 9,
+            "value": "cheap ",
+            "entity": "budget"
+          }
+        ]
+      },
+      {
+        "text": "suggest some cheap places",
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 13,
+            "end": 17,
+            "value": "cheap ",
+            "entity": "budget"
+          }
+        ]
+      },
+      {
+        "text": "suggest some moderate places",
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 13,
+            "end": 20,
             "value": "cheap ",
             "entity": "budget"
           }
@@ -643,7 +739,7 @@
             "entity": "email_id"
           }
         ]
-      }
+      },
       {
         "text": "search for fine dine in delhi",
         "intent": "restaurant_search",

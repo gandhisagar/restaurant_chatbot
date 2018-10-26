@@ -266,6 +266,78 @@
         "entities": [
           {
             "start": 0,
+            "end": 4,
+            "value": "cheap",
+            "entity": "budget"
+          }
+        ],
+        "text": "Cheap"
+      },
+      {
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "cheap",
+            "entity": "budget"
+          }
+        ],
+        "text": "cheap"
+      },
+      {
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 0,
+            "end": 7,
+            "value": "moderate",
+            "entity": "budget"
+          }
+        ],
+        "text": "Moderate"
+      },
+      {
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 0,
+            "end": 7,
+            "value": "moderate",
+            "entity": "budget"
+          }
+        ],
+        "text": "moderate"
+      },
+      {
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 0,
+            "end": 8,
+            "value": "expensive",
+            "entity": "budget"
+          }
+        ],
+        "text": "Expensive"
+      },
+      {
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 0,
+            "end": 8,
+            "value": "expensive",
+            "entity": "budget"
+          }
+        ],
+        "text": "expensive"
+      },
+      {
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 0,
             "end": 7,
             "value": "chinese",
             "entity": "cuisine"
@@ -526,12 +598,72 @@
         "entities": [
           {
             "start": 5,
-            "end": 11,
+            "end": 9,
             "value": "cheap ",
             "entity": "budget"
           }
         ],
         "text": "show cheap dine out joints nearby"
+      },
+      {
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 13,
+            "end": 17,
+            "value": "cheap ",
+            "entity": "budget"
+          }
+        ],
+        "text": "suggest some cheap places"
+      },
+      {
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 13,
+            "end": 20,
+            "value": "cheap ",
+            "entity": "budget"
+          }
+        ],
+        "text": "suggest some moderate places"
+      },
+      {
+        "intent": "ask_email_address",
+        "text": "Sure send me the details"
+      },
+      {
+        "intent": "ask_email_address",
+        "text": "yes please email me the details"
+      },
+      {
+        "intent": "ask_email_address",
+        "text": "please mail me the details"
+      },
+      {
+        "intent": "email_data",
+        "entities": [
+          {
+            "start": 14,
+            "end": 26,
+            "value": "abc@gmail.com",
+            "entity": "email_id"
+          }
+        ],
+        "text": "my emailid is abc@gmail.com"
+      },
+      {
+        "intent": "email_data",
+        "entities": [
+          {
+            "start": 23,
+            "end": 35,
+            "value": "xyz@gmail.com",
+            "entity": "email_id"
+          }
+        ],
+        "text": "send me the details at xyz@gmail.com"
       },
       {
         "intent": "restaurant_search",

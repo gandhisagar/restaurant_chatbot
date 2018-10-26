@@ -73,5 +73,7 @@ actions:
 - utter_ask_location
 - utter_ask_cuisine
 - utter_ask_budget
+- utter_ask_email_question
+- utter_ask_for_email_id
 - actions.ActionSearchRestaurants
 - actions.ActionSendRestaurantData

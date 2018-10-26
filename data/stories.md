@@ -83,5 +83,67 @@
     - utter_goodbye
     - export
 
+## Generated Story -9057212234804734937
+* greet
+    - utter_greet
+* restaurant_search
+    - utter_ask_location
+* restaurant_search{"location": "hyderabad"}
+    - slot{"location": "hyderabad"}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "chinese"}
+    - utter_ask_budget
+* restaurant_search{"budget": "expensive"}
+    - action_restaurant
+    - utter_ask_email_question
+* ask_email_address
+    - utter_ask_for_email_id
+* affirm
+    - action_send_data{"email_id": "abc@gmail.com"}
+    - utter_goodbye
+    - export
+
+
+## Generated Story -9057212234804734938
+* greet
+    - utter_greet
+* restaurant_search
+    - utter_ask_location
+* restaurant_search{"location": "delhi"}
+    - slot{"location": "hyderabad"}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "Italian"}
+    - utter_ask_budget
+* restaurant_search{"budget": "cheap"}
+    - action_restaurant
+    - utter_ask_email_question
+* ask_email_address
+    - utter_ask_for_email_id
+* affirm
+    - action_send_data{"email_id": "abc@gmail.com"}
+    - utter_goodbye
+    - export
+
+## Generated Story -9057212234804734941
+* greet
+    - utter_greet
+* restaurant_search
+    - utter_ask_location
+* restaurant_search{"location": "ahmedabad"}
+    - slot{"location": "hyderabad"}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "North Indian"}
+    - utter_ask_budget
+* restaurant_search{"budget": "moderate"}
+    - action_restaurant
+    - utter_ask_email_question
+* ask_email_address
+    - utter_ask_for_email_id
+* affirm
+    - action_send_data{"email_id": "xyz@gmail.com"}
+    - utter_goodbye
+    - export
+
+
 
 
