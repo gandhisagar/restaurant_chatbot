@@ -606,6 +606,45 @@
         ]
       },
       {
+        "text": "Sure send me the details",
+        "intent": "ask_email_address",
+        "entities": []
+      },
+      {
+        "text": "yes please email me the details",
+        "intent": "ask_email_address",
+        "entities": []
+      },
+      {
+        "text": "please mail me the details",
+        "intent": "ask_email_address",
+        "entities": []
+      },
+      {
+        "text": "my emailid is abc@gmail.com",
+        "intent": "email_data",
+        "entities": [
+          {
+             "start": 14,
+            "end": 26,
+            "value": "abc@gmail.com",
+            "entity": "email_id"
+          }
+        ]
+      },
+      {
+        "text": "send me the details at xyz@gmail.com",
+        "intent": "email_data",
+        "entities": [
+          {
+             "start": 23,
+            "end": 35,
+            "value": "xyz@gmail.com",
+            "entity": "email_id"
+          }
+        ]
+      }
+      {
         "text": "search for fine dine in delhi",
         "intent": "restaurant_search",
         "entities": [

@@ -17,7 +17,9 @@ intents:
  - deny
  - goodbye
  - thankyou
+ - ask_email_address
  - restaurant_search
+ - email_data
 
 
 templates:
@@ -58,6 +60,10 @@ templates:
         payload: "moderate"
       - title: "More than 700"
         payload: "expensive"
+  utter_ask_email_question:
+    - "Should I send top 10 restaurants to your email id?"
+  utter_ask_for_email_id:
+    - "On what email id should I send the data?"
 
 actions:
 - utter_greet
@@ -68,3 +74,4 @@ actions:
 - utter_ask_cuisine
 - utter_ask_budget
 - actions.ActionSearchRestaurants
+- actions.ActionSendRestaurantData
