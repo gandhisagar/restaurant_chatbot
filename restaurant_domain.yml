@@ -55,11 +55,11 @@ templates:
     - text: "What price range are you looking at?"
       buttons:
       - title: "Lesser than Rs. 300"
-        payload: "cheap"
+        payload: "300"
       - title: "Rs. 300 to 700"
-        payload: "moderate"
+        payload: "700"
       - title: "More than 700"
-        payload: "expensive"
+        payload: "5000"
   utter_ask_email_question:
     - "Should I send top 10 restaurants to your email id?"
   utter_ask_for_email_id:
