@@ -14,7 +14,8 @@ class ActionSearchRestaurants(Action):
         return 'action_restaurant'
 
     def run(self, dispatcher, tracker, domain):
-        config={ "user_key":"6ce88a5ec1419e335afa1c7f92f4b739"}
+        #config={ "user_key":"6ce88a5ec1419e335afa1c7f92f4b739"}
+        config={"user_key":"db5885b95cb656b7ad69ef10ef3bc85c"}
         zomato = zomatopy.initialize_app(config)
         entries = 1
         budget_lower_limit = 0
@@ -25,6 +26,7 @@ class ActionSearchRestaurants(Action):
             budget_code = int(tracker.get_slot('budget'))
 
             print ("Location: ", loc)
+            print ("Cuisine:" , cuisine)
             print ("budget: ", budget_code)
             print ("Budget is: ", budget_code)
 
@@ -46,6 +48,7 @@ class ActionSearchRestaurants(Action):
             else:
                 location_detail=zomato.get_location(loc, 1)
                 d1 = json.loads(location_detail)
+                print("Location Details:", d1)
                 lat=d1["location_suggestions"][0]["latitude"]
                 lon=d1["location_suggestions"][0]["longitude"]
                 cuisines_dict={'bakery':5,'chinese':25,'cafe':30,'italian':55,'biryani':7,'north indian':50,'south indian':85,
