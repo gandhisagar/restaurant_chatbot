@@ -22,7 +22,7 @@ class ActionSearchRestaurants(Action):
         try:
             loc = tracker.get_slot('location')
             cuisine = tracker.get_slot('cuisine')
-            budget_code = tracker.get_slot('budget')
+            budget_code = int(tracker.get_slot('budget'))
 
             print ("Location: ", loc)
             print ("budget: ", budget_code)
