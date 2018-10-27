@@ -317,78 +317,6 @@
         ]
       },
       {
-        "text": "Cheap",
-        "intent": "restaurant_search",
-        "entities": [
-          {
-            "start": 0,
-            "end": 4,
-            "value": "cheap",
-            "entity": "budget"
-          }
-        ]
-      },
-      {
-        "text": "cheap",
-        "intent": "restaurant_search",
-        "entities": [
-          {
-            "start": 0,
-            "end": 4,
-            "value": "cheap",
-            "entity": "budget"
-          }
-        ]
-      },
-      {
-        "text": "Moderate",
-        "intent": "restaurant_search",
-        "entities": [
-          {
-            "start": 0,
-            "end": 7,
-            "value": "moderate",
-            "entity": "budget"
-          }
-        ]
-      },
-      {
-        "text": "moderate",
-        "intent": "restaurant_search",
-        "entities": [
-          {
-            "start": 0,
-            "end": 7,
-            "value": "moderate",
-            "entity": "budget"
-          }
-        ]
-      },
-      {
-        "text": "Expensive",
-        "intent": "restaurant_search",
-        "entities": [
-          {
-            "start": 0,
-            "end": 8,
-            "value": "expensive",
-            "entity": "budget"
-          }
-        ]
-      },
-      {
-        "text": "expensive",
-        "intent": "restaurant_search",
-        "entities": [
-          {
-            "start": 0,
-            "end": 8,
-            "value": "expensive",
-            "entity": "budget"
-          }
-        ]
-      },
-      {
         "text": "Chinese",
         "intent": "restaurant_search",
         "entities": [
@@ -521,7 +449,7 @@
         ]
       },
       {
-        "text": "can you book a table in rome in a moderate price range with british food for four people",
+        "text": "can you book a table in rome in a moderate budget range with british food for four people",
         "intent": "restaurant_search",
         "entities": [
           {
@@ -533,20 +461,14 @@
           {
             "start": 34,
             "end": 42,
-            "value": "mid",
-            "entity": "price"
+            "value": "moderate",
+            "entity": "budget"
           },
           {
             "start": 60,
             "end": 67,
             "value": "british",
             "entity": "cuisine"
-          },
-          {
-            "start": 77,
-            "end": 81,
-            "value": "4",
-            "entity": "people"
           }
         ]
       },
@@ -666,42 +588,6 @@
         "entities": []
       },
       {
-        "text": "show cheap dine out joints nearby",
-        "intent": "restaurant_search",
-        "entities": [
-          {
-            "start": 5,
-            "end": 9,
-            "value": "cheap ",
-            "entity": "budget"
-          }
-        ]
-      },
-      {
-        "text": "suggest some cheap places",
-        "intent": "restaurant_search",
-        "entities": [
-          {
-            "start": 13,
-            "end": 17,
-            "value": "cheap ",
-            "entity": "budget"
-          }
-        ]
-      },
-      {
-        "text": "suggest some moderate places",
-        "intent": "restaurant_search",
-        "entities": [
-          {
-            "start": 13,
-            "end": 20,
-            "value": "cheap ",
-            "entity": "budget"
-          }
-        ]
-      },
-      {
         "text": "Sure send me the details",
         "intent": "ask_email_address",
         "entities": []
@@ -771,8 +657,8 @@
           {
             "start": 36,
             "end": 40,
-            "value": "750 ",
-            "entity": "price"
+            "value": "750",
+            "entity": "budget"
           },
           {
             "start": 26,
@@ -789,7 +675,7 @@
         ]
       },
       {
-        "text": "find a good eating outlet that serves mexican, italian and south indian and can accommodate 10 people",
+        "text": "find a good eating outlet that serves mexican, italian and south indian",
         "intent": "restaurant_search",
         "entities": [
           {
@@ -809,144 +695,6 @@
             "end": 71,
             "value": "South Indian",
             "entity": "cuisine"
-          },
-          {
-            "start": 92,
-            "end": 101,
-            "value": "10",
-            "entity": "people"
-          }
-        ]
-      },
-      {
-        "text": "find a cheap restaurant for 12 persons that offers pizza, tacko, dosa",
-        "intent": "restaurant_search",
-        "entities": [
-          {
-            "start": 7,
-            "end": 13,
-            "value": "low",
-            "entity": "budget"
-          },
-          {
-            "start": 28,
-            "end": 38,
-            "value": "12",
-            "entity": "people"
-          },
-          {
-            "start": 51,
-            "end": 56,
-            "value": "Italian",
-            "entity": "cuisine"
-          },
-          {
-            "start": 58,
-            "end": 63,
-            "value": "Mexican",
-            "entity": "cuisine"
-          },
-          {
-            "start": 65,
-            "end": 69,
-            "value": "South Indian",
-            "entity": "cuisine"
-          }
-        ]
-      },
-      {
-        "text": "search cheap mexican restaurants in delhi",
-        "intent": "restaurant_search",
-        "entities": [
-          {
-            "start": 7,
-            "end": 13,
-            "value": "cheap ",
-            "entity": "budget"
-          },
-          {
-            "start": 13,
-            "end": 21,
-            "value": "Mexican",
-            "entity": "cuisine"
-          },
-          {
-            "start": 36,
-            "end": 41,
-            "value": "Delhi",
-            "entity": "location"
-          }
-        ]
-      },
-      {
-        "text": "find fine-dine joints near gurgaon",
-        "intent": "restaurant_search",
-        "entities": [
-          {
-            "start": 5,
-            "end": 14,
-            "value": "expensive",
-            "entity": "budget"
-          },
-          {
-            "start": 27,
-            "end": 34,
-            "value": "gurgaon",
-            "entity": "location"
-          }
-        ]
-      },
-      {
-        "text": "look for moderate restaurants which offers continental culinary around Agra for 4",
-        "intent": "restaurant_search",
-        "entities": [
-          {
-            "start": 9,
-            "end": 18,
-            "value": "moderate ",
-            "entity": "budget"
-          },
-          {
-            "start": 43,
-            "end": 55,
-            "value": "American",
-            "entity": "cuisine"
-          },
-          {
-            "start": 71,
-            "end": 75,
-            "value": "Agra",
-            "entity": "location"
-          },
-          {
-            "start": 76,
-            "end": 81,
-            "value": "4",
-            "entity": "people"
-          }
-        ]
-      },
-      {
-        "text": "find expensive south indian restaurant in chandigarh",
-        "intent": "restaurant_search",
-        "entities": [
-          {
-            "start": 5,
-            "end": 15,
-            "value": "expensive",
-            "entity": "budget"
-          },
-          {
-            "start": 15,
-            "end": 27,
-            "value": "South Indian",
-            "entity": "cuisine"
-          },
-          {
-            "start": 42,
-            "end": 52,
-            "value": "Chandigarh",
-            "entity": "location"
           }
         ]
       },
@@ -954,12 +702,6 @@
         "text": "find some good eating joints for American food in Bhopal",
         "intent": "restaurant_search",
         "entities": [
-          {
-            "start": 10,
-            "end": 21,
-            "value": "moderate",
-            "entity": "budget"
-          },
           {
             "start": 33,
             "end": 42,
@@ -973,7 +715,151 @@
             "entity": "location"
           }
         ]
-      }
+      },
+      {  
+          "text":"awesome American restaurant in Bhilai for 3 people within 700",
+          "intent":"restaurant_search",
+          "entities":[  
+            {  
+              "start":8,
+              "end":17,
+              "value":"American ",
+              "entity":"cuisine"
+            },
+            {  
+              "start":31,
+              "end":38,
+              "value":"Bhilai ",
+              "entity":"location"
+            },
+            {  
+              "start":58,
+              "end":61,
+              "value":"700",
+              "entity":"budget"
+            }
+            ]
+         },
+         {  
+            "text":"happening veg chinese hotel in kolkata for 2 people, budget around 600",
+            "intent":"restaurant_search",
+            "entities":[  
+               {  
+                  "start":14,
+                  "end":22,
+                  "value":"chinese ",
+                  "entity":"cuisine"
+               },
+               {  
+                  "start":31,
+                  "end":39,
+                  "value":"kolkata ",
+                  "entity":"location"
+               },
+               {  
+                  "start":67,
+                  "end":70,
+                  "value":"600",
+                  "entity":"budget"
+               }
+            ]
+         },
+         {  
+            "text":"high class american restaurant in Poona for 3 people, mail me details at y2k@abc.com budget 2000",
+            "intent":"restaurant_search",
+            "entities":[  
+               {  
+                  "start":11,
+                  "end":20,
+                  "value":"american ",
+                  "entity":"cuisine"
+               },
+               {  
+                  "start":34,
+                  "end":40,
+                  "value":"Poona ",
+                  "entity":"location"
+               },
+               {  
+                  "start":92,
+                  "end":96,
+                  "value":"2000",
+                  "entity":"budget"
+               }
+            ]
+         },
+           {  
+            "text":"Under 500 I am looking for Mexican food in Hyderabad",
+            "intent":"restaurant_search",
+            "entities":[  
+               {  
+                  "start":6,
+                  "end":9,
+                  "value":"500",
+                  "entity":"budget"
+               },
+               {  
+                  "start":27,
+                  "end":34,
+                  "value":"Mexican",
+                  "entity":"cuisine"
+               },
+               {  
+                  "start":43,
+                  "end":52,
+                  "value":"Hyderabad",
+                  "entity":"location"
+               }
+            ]
+         },
+         {  
+            "text":"`Within 700 I am looking for American food at Kolkata",
+            "intent":"restaurant_search",
+            "entities":[  
+               {  
+                  "start":8,
+                  "end":11,
+                  "value":"700",
+                  "entity":"budget"
+               },
+               {  
+                  "start":29,
+                  "end":37,
+                  "value":"American",
+                  "entity":"cuisine"
+               },
+               {  
+                  "start":46,
+                  "end":53,
+                  "value":"Kolkata",
+                  "entity":"location"
+               }
+            ]
+         },
+         {  
+            "text":"Budget around 700 looking out options of South Indian food in Delhi",
+            "intent":"restaurant_search",
+            "entities":[  
+               {  
+                  "start":14,
+                  "end":17,
+                  "value":"700",
+                  "entity":"budget"
+               },
+               {  
+                  "start":41,
+                  "end":53,
+                  "value":"South Indian",
+                  "entity":"cuisine"
+               },
+               {  
+                  "start":62,
+                  "end":67,
+                  "value":"Delhi",
+                  "entity":"location"
+               }
+            ]
+         }
     ]
   }
 }
