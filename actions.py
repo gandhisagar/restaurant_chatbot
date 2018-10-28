@@ -13,6 +13,7 @@ import pandas as pd
 import re
 from email_service import send_msg_to_clinet
 
+# Form entity fields 
 from rasa_core.actions.forms import (
     BooleanFormField,
     EntityFormField,
@@ -21,6 +22,7 @@ from rasa_core.actions.forms import (
 )
 
 #This action procreates the data to be used later
+# these are all mandatory fields which are to be filled before making a zomato API query
 class ActionFetchFormAndData(FormAction):
 	RANDOMIZE = False
 	@staticmethod
@@ -33,7 +35,8 @@ class ActionFetchFormAndData(FormAction):
 		
 	def name(self):
 		return 'action_fetch_form_and_data'
-		
+
+# Once we have all information entered by the user, this subroutine will be invoked		
 	def submit(self, dispatcher, tracker, domain):
 		config={ "user_key":"2fab14e6a218fa1238aa56e9da9581b7"}
 		zomato = zomatopy.initialize_app(config)
@@ -53,14 +56,15 @@ class ActionFetchFormAndData(FormAction):
 		# create a corpus in the form of dataframe
 		cached_res = pd.DataFrame(columns=['Name','Address','Avg budget for two','Rating'])
 		count = 0
+		# Total of 50 entries at max. to be fetched from Zomato, 10 at a time
 		while count != 5:
 			results=zomato.restaurant_search("", lat, lon, str(cuisines_dict.get(cuisine)), 10)
-			d = json.loads(results)
+			res_json = json.loads(results)
 			response=""
-			if d['results_found'] == 0:
+			if res_json['results_found'] == 0:
 				break
 			else:
-				for restaurant in d['restaurants']:
+				for restaurant in res_json['restaurants']:
 					cached_res = cached_res.append({'Name':restaurant['restaurant']['name'],
 															'Address': restaurant['restaurant']['location']['address'],
 															'Avg budget for two':restaurant['restaurant']['average_cost_for_two'],
@@ -73,9 +77,9 @@ class ActionFetchFormAndData(FormAction):
 			SlotSet("budget", None)
 			return[SlotSet("cuisine", None)]
 		else:
-			return[SlotSet("result_restaurants_details",cached_res.to_json())]
+			return[SlotSet("result_restaurants_details",cached_res.to_json())] #this filled slot will be exported back to be used in search function
 
-
+#Actual function that validates and populates the view to be consumed by user
 class ActionSearchRestaurants(Action):
 	def name(self):
 		return 'action_restaurant'
@@ -91,20 +95,20 @@ class ActionSearchRestaurants(Action):
 			
 			dispatcher.utter_message('Budget_range: '+ budget_code)
 			dispatcher.utter_message('Cuisine: '+ cuisine)
-			
+			# Location validation
 			if loc not in (settings.TIER_1 or settings.TIER_2):
 				dispatcher.utter_template("utter_invalid_location",tracker)
 				dispatcher.utter_message("Sorry! we don't serve in "+loc)
 				return [SlotSet('location',None)]
-			
+			# Cuisine validation
 			if 	cuisine not in cuisines:
 				dispatcher.utter_template("utter_invalid_cuisine",tracker)
 				dispatcher.utter_message("Sorry! "+cuisine+" is not in the list.")
 				return [SlotSet('cuisine',None)]
-			
+			# Budget validation
 			if str(budget_code) not in ["<300","300-700 range",">700"]:
 				return[SlotSet('budget', None)]
-			
+			#Populate the result based on the budget specified by the user
 			if budget_code == "<300":
 				res = cached_res.loc[cached_res['Avg budget for two'] <=300]
 				if len(res) == 0:
@@ -143,7 +147,7 @@ class ActionSearchRestaurants(Action):
 		except Exception as e:
 			print ("Exception is : ", e)
 
-
+# Send the top 10 searches on email 
 class ActionSendRestaurantData(Action):
 	def name(self):
 		return 'action_send_data'
@@ -155,7 +159,7 @@ class ActionSendRestaurantData(Action):
 			dispatcher.utter_template("utter_email_not_recognized", tracker)
 			dispatcher.utter_message("Email not recognized")
 			return[SlotSet('email',None)]
-			
+		# email-id validation	
 		list_email = re.findall('([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)',email_id) 
 		try:
 			loc = tracker.get_slot('location')
@@ -168,7 +172,7 @@ class ActionSendRestaurantData(Action):
 			dispatcher.utter_message ('Email: '+ email_id)
 			
 			cached_res = pd.read_json(tracker.get_slot('result_restaurants_details'))
-			
+			# content preparation based on the budget specified
 			if budget_code == "<300":
 				res = cached_res.loc[cached_res['Avg budget for two'] <=300]
 				if len(res) == 0:
@@ -210,7 +214,7 @@ class ActionSendRestaurantData(Action):
 		except Exception as e:
 			print ("Exception is : ", e)
 
-
+# Operational functions
 class ActionGoodBye(Action):
 	def name(self):
 		return 'action_bye'
