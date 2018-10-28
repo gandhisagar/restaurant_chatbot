@@ -1,0 +1,135 @@
+action_factory: null
+action_names:
+- utter_greet
+- utter_goodbye
+- utter_default
+- utter_ask_howcanhelp
+- utter_ask_location
+- utter_ask_cuisine
+- utter_ask_budget
+- utter_ask_email
+- utter_ask_send_email
+- utter_invalid_location
+- utter_invalid_cuisine
+- utter_no_restaurants_found
+- utter_restaurant_search_results
+- utter_email_sent_successfully
+- utter_email_not_recognized
+- action_restaurant
+- action_fetch_form_and_data
+- action_send_data
+- action_restarted
+- action_bye
+- action_reset
+actions:
+- utter_greet
+- utter_goodbye
+- utter_default
+- utter_ask_howcanhelp
+- utter_ask_location
+- utter_ask_cuisine
+- utter_ask_budget
+- utter_ask_email
+- utter_ask_send_email
+- utter_invalid_location
+- utter_invalid_cuisine
+- utter_no_restaurants_found
+- utter_restaurant_search_results
+- utter_email_sent_successfully
+- utter_email_not_recognized
+- actions.ActionSearchRestaurants
+- actions.ActionFetchFormAndData
+- actions.ActionSendRestaurantData
+- actions.ActionRestarted
+- actions.ActionGoodBye
+- actions.ActionReset
+config:
+  store_entities_as_slots: true
+entities:
+- location
+- cuisine
+- budget
+- email
+intents:
+- greet
+- affirm
+- deny
+- goodbye
+- thankyou
+- restaurant_search
+- send_email
+- default
+slots:
+  budget:
+    initial_value: null
+    type: rasa_core.slots.CategoricalSlot
+    values:
+    - <300
+    - 300-700 range
+    - '>700'
+  cuisine:
+    initial_value: null
+    type: rasa_core.slots.CategoricalSlot
+    values:
+    - chinese
+    - italian
+    - south indian
+    - north indian
+    - mexican
+    - american
+  email:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  location:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  requested_slot:
+    initial_value: null
+    type: rasa_core.slots.UnfeaturizedSlot
+  res_restaurant:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  result_restaurants_details:
+    initial_value: null
+    type: rasa_core.slots.UnfeaturizedSlot
+templates:
+  utter_ask_budget:
+  - text: "What's your budget? \n1. Lesser than Rs. 300 (<300)\n2. Rs. 300 to 700\
+      \ (300-700 range)\n3. More than 700 (>700)\n"
+  utter_ask_cuisine:
+  - text: "what kind of cuisine would you like? \n 1. Chinese \n 2. Italian \n 3.\
+      \ South Indian \n 4. North Indian \n 5. Mexican \n 6. American"
+  utter_ask_email:
+  - text: On which email-id shall i send?
+  - text: What's your email-id?
+  utter_ask_howcanhelp:
+  - text: how can I help you?
+  - text: how may I help you?
+  utter_ask_location:
+  - text: In which city?
+  - text: In which city you want to search?
+  - text: May I know the city name?
+  utter_ask_send_email:
+  - text: Should I send you details of top 10 restaurants on email?
+  - text: Do you like me to send the top 10 details to your email?
+  utter_default:
+  - text: Please repeat.
+  utter_email_not_recognized:
+  - text: Email not recognized - {email}. Please type agian
+  utter_email_sent_successfully:
+  - text: Sent the email successfully to {email}
+  utter_goodbye:
+  - text: goodbye :(
+  - text: Bye-bye
+  utter_greet:
+  - text: hey there! How may i help you
+  - text: Hi, How can I help you!
+  - text: Hey, How is it going. How May I help you Today
+  utter_invalid_cuisine:
+  - text: Sorry! {cuisine} is not in the list. Please try again
+  utter_invalid_location:
+  - text: Sorry! we dont serve in {location}.
+  utter_no_restaurants_found:
+  - text: Sorry! No restaurants found!
+  utter_restaurant_search_results:
+  - text: "Found the following search results \n {res_restaurant}"

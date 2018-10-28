@@ -39,7 +39,7 @@ class ActionFetchFormAndData(FormAction):
 		zomato = zomatopy.initialize_app(config)
 		loc = tracker.get_slot('location')
 		cuisine = tracker.get_slot('cuisine')
-		budget_range = int(tracker.get_slot('budget'))
+		budget_range = tracker.get_slot('budget')
 			
 		location_detail=zomato.get_location(loc, 1)
 		d1 = json.loads(location_detail)
@@ -66,6 +66,7 @@ class ActionFetchFormAndData(FormAction):
 			
 		if len(cached_res) == 0:
 			dispatcher.utter_template("utter_no_restaurants_found", tracker)
+			disptatch.utter_message("Sorry! No restaurants found!")
 			SlotSet("budget", None)
 			return[SlotSet("cuisine", None)]
 		else:
@@ -90,10 +91,12 @@ class ActionSearchRestaurants(Action):
 			
 			if loc not in (settings.TIER_1 or settings.TIER_2):
 				dispatcher.utter_template("utter_invalid_location",tracker)
+				disptacher.utter_message("Sorry! we dont serve in "+location)
 				return [SlotSet('location',None)]
 			
 			if 	cuisine not in cuisines:
 				dispatcher.utter_template("utter_invalid_cuisine",tracker)
+				disptacher.utter_message("Sorry! "+cuisine+" is not in the list.")
 				return [SlotSet('cuisine',None)]
 			
 			if str(budget_code) not in ["<300","300-700 range",">700"]:
@@ -105,6 +108,7 @@ class ActionSearchRestaurants(Action):
 				if len(res) == 0:
 					SlotSet("budget", None)
 					dispatcher.utter_template("utter_no_restaurants_found", tracker)
+					disptacher.utter_message("Sorry! No restaurants found!")
 					return[SlotSet("res_restaurant", None)]
 				else:
 					for index, row in res.head(5).iterrows():
@@ -117,6 +121,7 @@ class ActionSearchRestaurants(Action):
 				if len(res) == 0:
 					SlotSet("budget", None)
 					dispatcher.utter_template("utter_no_restaurants_found", tracker)
+					disptacher.utter_message("Sorry! No restaurants found!")
 					return[SlotSet("res_restaurant", None)]
 				else:
 					for index, row in res.head(5).iterrows():
@@ -129,6 +134,7 @@ class ActionSearchRestaurants(Action):
 				if len(res) == 0:
 					SlotSet("budget", None)
 					dispatcher.utter_template("utter_no_restaurants_found", tracker)
+					disptacher.utter_message("Sorry! No restaurants found!")
 					return[SlotSet("res_restaurant", None)]
 				else:
 					for index, row in res.head(5).iterrows():
@@ -143,9 +149,11 @@ class ActionSendRestaurantData(Action):
 		return 'action_send_data'
 
 	def run(self, dispatcher, tracker, domain):
+		response = ""
 		email_id = tracker.get_slot('email')
 		if email_id == None:
 			dispatcher.utter_template("utter_email_not_recognized", tracker)
+			dispatcher.utter_message("Email not recognized")
 			return[SlotSet('email',None)]
 			
 		list_email = re.findall('([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)',email_id) 
@@ -161,6 +169,7 @@ class ActionSendRestaurantData(Action):
 				if len(res) == 0:
 					SlotSet("budget", None)
 					dispatcher.utter_template("utter_no_restaurants_found", tracker)
+					disptacher.utter_message("Sorry! No restaurants found!")
 					return[SlotSet("res_restaurant", None)]
 				else:
 					for index, row in res.head(10).iterrows():
@@ -173,6 +182,7 @@ class ActionSendRestaurantData(Action):
 				if len(res) == 0 :
 					SlotSet("budget", None)
 					dispatcher.utter_template("utter_no_restaurants_found", tracker)
+					disptacher.utter_message("Sorry! No restaurants found!")
 					return[SlotSet("res_restaurant", None)]
 				else:
 					for index, row in res.head(10).iterrows():
@@ -185,6 +195,7 @@ class ActionSendRestaurantData(Action):
 				if len(res) == 0:
 					SlotSet("budget", None)
 					dispatcher.utter_template("utter_no_restaurants_found", tracker)
+					disptacher.utter_message("Sorry! No restaurants found!")
 					return[SlotSet("res_restaurant", None)]
 				else:
 					for index, row in res.head(10).iterrows():
@@ -192,7 +203,6 @@ class ActionSendRestaurantData(Action):
 					return[SlotSet("res_restaurant", response)]
 
 			send_msg_to_clinet(data_to_send=response, email_id_requested=email_id)
-			# dispatcher.utter_message("-----"+response)
 			return [SlotSet('location',loc)]
 		except Exception as e:
 			print ("Exception is : ", e)
