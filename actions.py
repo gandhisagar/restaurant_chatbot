@@ -47,9 +47,9 @@ class ActionFetchFormAndData(FormAction):
 		lon=d1["location_suggestions"][0]["longitude"]
 		cuisines_dict={'mexican':73,'chinese':25,'italian':55,'american':1,'north indian':50,'south indian':85}
 		
-		dispatcher.utter_message ('Location: ', loc)
-		dispatcher.utter_message ('Cuisine: ', cuisine)
-		dispatcher.utter_message ('Budget: ', budget_range)
+		dispatcher.utter_message ('Location: '+ loc)
+		dispatcher.utter_message ('Cuisine: '+ cuisine)
+		dispatcher.utter_message ('Budget: '+ budget_range)
 		# create a corpus in the form of dataframe
 		cached_res = pd.DataFrame(columns=['Name','Address','Avg budget for two','Rating'])
 		count = 0
@@ -89,8 +89,8 @@ class ActionSearchRestaurants(Action):
 			cached_res = pd.read_json(tracker.get_slot('result_restaurants_details'))
 			cuisines=['mexican','chinese','italian','american','north indian','south indian']
 			
-			dispatcher.utter_message('Budget_range: ', budget_code)
-			dispatcher.utter_message('Cuisine: ', cuisine)
+			dispatcher.utter_message('Budget_range: '+ budget_code)
+			dispatcher.utter_message('Cuisine: '+ cuisine)
 			
 			if loc not in (settings.TIER_1 or settings.TIER_2):
 				dispatcher.utter_template("utter_invalid_location",tracker)
@@ -162,10 +162,10 @@ class ActionSendRestaurantData(Action):
 			cuisine = tracker.get_slot('cuisine')
 			budget_code = tracker.get_slot('budget')
 
-			dispatcher.utter_message ('Location: ', loc)
-			dispatcher.utter_message ('Cuisine: ', cuisine)
-			dispatcher.utter_message ('Budget: ', budget_range)
-			dispatcher.utter_message ('Email: ', email_id)
+			dispatcher.utter_message ('Location: '+ loc)
+			dispatcher.utter_message ('Cuisine: '+ cuisine)
+			dispatcher.utter_message ('Budget: '+ budget_range)
+			dispatcher.utter_message ('Email: '+ email_id)
 			
 			cached_res = pd.read_json(tracker.get_slot('result_restaurants_details'))
 			
