@@ -47,6 +47,9 @@ class ActionFetchFormAndData(FormAction):
 		lon=d1["location_suggestions"][0]["longitude"]
 		cuisines_dict={'mexican':73,'chinese':25,'italian':55,'american':1,'north indian':50,'south indian':85}
 		
+		dispatcher.utter_message ('Location: ', loc)
+		dispatcher.utter_message ('Cuisine: ', cuisine)
+		dispatcher.utter_message ('Budget: ', budget_range)
 		# create a corpus in the form of dataframe
 		cached_res = pd.DataFrame(columns=['Name','Address','Avg budget for two','Rating'])
 		count = 0
@@ -86,29 +89,28 @@ class ActionSearchRestaurants(Action):
 			cached_res = pd.read_json(tracker.get_slot('result_restaurants_details'))
 			cuisines=['mexican','chinese','italian','american','north indian','south indian']
 			
-			print('Budget_range: ', budget_code)
-			print('Cuisine: ', cuisine)
+			dispatcher.utter_message('Budget_range: ', budget_code)
+			dispatcher.utter_message('Cuisine: ', cuisine)
 			
 			if loc not in (settings.TIER_1 or settings.TIER_2):
 				dispatcher.utter_template("utter_invalid_location",tracker)
-				disptacher.utter_message("Sorry! we dont serve in "+location)
+				dispatcher.utter_message("Sorry! we don't serve in "+loc)
 				return [SlotSet('location',None)]
 			
 			if 	cuisine not in cuisines:
 				dispatcher.utter_template("utter_invalid_cuisine",tracker)
-				disptacher.utter_message("Sorry! "+cuisine+" is not in the list.")
+				dispatcher.utter_message("Sorry! "+cuisine+" is not in the list.")
 				return [SlotSet('cuisine',None)]
 			
 			if str(budget_code) not in ["<300","300-700 range",">700"]:
 				return[SlotSet('budget', None)]
 			
 			if budget_code == "<300":
-				res = cached_res[cached_res['Avg budget for two'] <=300]
-				res.sort_values('Rating',ascending=False,inplace=True)
+				res = cached_res.loc[cached_res['Avg budget for two'] <=300]
 				if len(res) == 0:
 					SlotSet("budget", None)
 					dispatcher.utter_template("utter_no_restaurants_found", tracker)
-					disptacher.utter_message("Sorry! No restaurants found!")
+					dispatcher.utter_message("Sorry! No restaurants found!")
 					return[SlotSet("res_restaurant", None)]
 				else:
 					for index, row in res.head(5).iterrows():
@@ -116,12 +118,11 @@ class ActionSearchRestaurants(Action):
 					return[SlotSet("res_restaurant", response)]
 			
 			elif budget_code == "300-700 range":
-				res = cached_res[(cached_res['Avg budget for two'] > 300) &  (cached_res['Avg budget for two'] <= 700)]
-				res.sort_values('Rating',ascending=False,inplace=True)
+				res = cached_res.loc[(cached_res['Avg budget for two'] > 300) &  (cached_res['Avg budget for two'] <= 700)]
 				if len(res) == 0:
 					SlotSet("budget", None)
 					dispatcher.utter_template("utter_no_restaurants_found", tracker)
-					disptacher.utter_message("Sorry! No restaurants found!")
+					dispatcher.utter_message("Sorry! No restaurants found!")
 					return[SlotSet("res_restaurant", None)]
 				else:
 					for index, row in res.head(5).iterrows():
@@ -129,12 +130,11 @@ class ActionSearchRestaurants(Action):
 					return[SlotSet("res_restaurant", response)]
 			
 			elif budget_code == ">700":				
-				res = cached_res[cached_res['Avg budget for two'] >700]
-				res.sort_values('Rating',ascending=False,inplace=True)
+				res = cached_res.loc[cached_res['Avg budget for two'] >700]
 				if len(res) == 0:
 					SlotSet("budget", None)
 					dispatcher.utter_template("utter_no_restaurants_found", tracker)
-					disptacher.utter_message("Sorry! No restaurants found!")
+					dispatcher.utter_message("Sorry! No restaurants found!")
 					return[SlotSet("res_restaurant", None)]
 				else:
 					for index, row in res.head(5).iterrows():
@@ -161,15 +161,20 @@ class ActionSendRestaurantData(Action):
 			loc = tracker.get_slot('location')
 			cuisine = tracker.get_slot('cuisine')
 			budget_code = tracker.get_slot('budget')
+
+			dispatcher.utter_message ('Location: ', loc)
+			dispatcher.utter_message ('Cuisine: ', cuisine)
+			dispatcher.utter_message ('Budget: ', budget_range)
+			dispatcher.utter_message ('Email: ', email_id)
+			
 			cached_res = pd.read_json(tracker.get_slot('result_restaurants_details'))
 			
 			if budget_code == "<300":
-				res = cached_res[cached_res['Avg budget for two'] <=300]
-				res.sort_values('Rating',ascending=False,inplace=True)
+				res = cached_res.loc[cached_res['Avg budget for two'] <=300]
 				if len(res) == 0:
 					SlotSet("budget", None)
 					dispatcher.utter_template("utter_no_restaurants_found", tracker)
-					disptacher.utter_message("Sorry! No restaurants found!")
+					dispatcher.utter_message("Sorry! No restaurants found!")
 					return[SlotSet("res_restaurant", None)]
 				else:
 					for index, row in res.head(10).iterrows():
@@ -177,12 +182,11 @@ class ActionSendRestaurantData(Action):
 					return[SlotSet("res_restaurant", response)]
 			
 			elif budget_code == "300-700 range":
-				res = cached_res[(cached_res['Avg budget for two'] > 300) &  (cached_res['Avg budget for two'] <= 700)]
-				res.sort_values('Rating',ascending=False,inplace=True)
+				res = cached_res.loc[(cached_res['Avg budget for two'] > 300) &  (cached_res['Avg budget for two'] <= 700)]
 				if len(res) == 0 :
 					SlotSet("budget", None)
 					dispatcher.utter_template("utter_no_restaurants_found", tracker)
-					disptacher.utter_message("Sorry! No restaurants found!")
+					dispatcher.utter_message("Sorry! No restaurants found!")
 					return[SlotSet("res_restaurant", None)]
 				else:
 					for index, row in res.head(10).iterrows():
@@ -190,12 +194,11 @@ class ActionSendRestaurantData(Action):
 					return[SlotSet("res_restaurant", response)]
 			
 			elif budget_code == ">700":				
-				res = cached_res[cached_res['Avg budget for two'] >700]
-				res.sort_values('Rating',ascending=False,inplace=True)
+				res = cached_res.loc[cached_res['Avg budget for two'] >700]
 				if len(res) == 0:
 					SlotSet("budget", None)
 					dispatcher.utter_template("utter_no_restaurants_found", tracker)
-					disptacher.utter_message("Sorry! No restaurants found!")
+					dispatcher.utter_message("Sorry! No restaurants found!")
 					return[SlotSet("res_restaurant", None)]
 				else:
 					for index, row in res.head(10).iterrows():
