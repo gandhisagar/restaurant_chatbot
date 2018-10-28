@@ -1,141 +1,90 @@
-
-## Generated Story 255706069223404498
+# Generated Story 521741571652174151
 * greet
     - utter_greet
 * restaurant_search
-    - utter_ask_location
-* restaurant_search{"location": "delhi"}
-    - slot{"location": "delhi"}
-    - utter_ask_cuisine
-* restaurant_search{"cuisine": "chinese"}
-    - slot{"cuisine": "chinese"}
-    - utter_ask_budget
-* restaurant_search{"budget": "expensive"}
-    - slot{"budget": "expensive"}
+    - action_fetch_form_and_data
+    - slot{"requested_slot": "location"}
+* restaurant_search{"location": "bangalore"}
+    - slot{"location": "bangalore"}
+    - action_fetch_form_and_data
+    - slot{"location": "bangalore"}
+    - slot{"requested_slot": "cuisine"}
+* restaurant_search{"cuisine": "south indian"}
+    - slot{"cuisine": "south indian"}
+    - action_fetch_form_and_data
+    - slot{"cuisine": "south indian"}
+    - slot{"requested_slot": "budget"}
+* restaurant_search{"budget": "<300"}
+    - slot{"budget": "<300"}
+    - action_fetch_form_and_data
+    - slot{"budget": "<300"}
+    - slot{"result_restaurants_details": "{\"Restaurant Name\":{\"0\":\"Byg Brewski Brewing Company\",\"1\":\"Taaza Thindi\",\"2\":\"AB's - Absolute Barbecues\",\"3\":\"Brahmin's Coffee Bar\",\"4\":\"CTR\",\"5\":\"Taaza Thindi\",\"6\":\"Oota Bangalore\",\"7\":\"The Black Pearl\",\"8\":\"Barbeque Nation\",\"9\":\"Empire Restaurant\",\"10\":\"Burma Burma\",\"11\":\"Tipsy Bull - The Bar Exchange\",\"12\":\"Empire Restaurant\",\"13\":\"Mavalli Tiffin Room (MTR)\",\"14\":\"Veena Stores\",\"15\":\"Gods Own Cafe\",\"16\":\"Hammered\",\"17\":\"Farzi Cafe\",\"18\":\"Go Native \",\"19\":\"Red Rhino\",\"20\":\"Empire Restaurant\",\"21\":\"Brewklyn Microbrewery\",\"22\":\"JW Kitchen - JW Marriott Bengaluru\",\"23\":\"The Permit Room\",\"24\":\"SodaBottleOpenerWala\",\"25\":\"eat.fit\",\"26\":\"Roots\",\"27\":\"Empire Restaurant\",\"28\":\"eat.fit\",\"29\":\"The Hidden Home\",\"30\":\"Tom's Restaurant\",\"31\":\"Sea Rock\",\"32\":\"S N Refreshments\",\"33\":\"Sri Laxmi Venkateshwara Coffee Bar\",\"34\":\"Chikkanna Tiffin Room\",\"35\":\"Arogya Ahaara\",\"36\":\"Namma SLN\",\"37\":\"Empire Restaurant\",\"38\":\"Empire Restaurant\",\"39\":\"Meghana Foods\",\"40\":\"Empire Restaurant\",\"41\":\"The Fisherman's Wharf\",\"42\":\"Meghana Foods\",\"43\":\"Barbecoa\",\"44\":\"Buff Buffet Buff\",\"45\":\"The Marina\",\"46\":\"Bombay Brasserie\",\"47\":\"Nandhana Palace\",\"48\":\"Karavalli - The Gateway Hotel\",\"49\":\"eat.fit\",\"50\":\"Kaapi Katte\",\"51\":\"Sri Raghavendra Stores\",\"52\":\"Masala Klub - The Taj West End\",\"53\":\"Feast - Sheraton Grand Bengaluru Whitefield Hotel & Convention Centre\",\"54\":\"Prems Graama Bhojanam\",\"55\":\"Bengaluru Cafe\",\"56\":\"Raghavendra Tiffin\",\"57\":\"HVR Veg \",\"58\":\"Rural Blues\",\"59\":\"LOFT38\",\"60\":\"Empire Restaurant\",\"61\":\"Feast - Sheraton Grand Bangalore Hotel at Brigade Gateway\",\"62\":\"Empire Restaurant\",\"63\":\"Andhra Ruchulu\",\"64\":\"Ebony\",\"65\":\"Meghana Foods\",\"66\":\"The Square Table\",\"67\":\"Empire Restaurant\",\"68\":\"Sattvam\",\"69\":\"Nagarjuna\",\"70\":\"Nagarjuna\",\"71\":\"Mavalli Tiffin Room (MTR)\",\"72\":\"The Market - The Ritz-Carlton\",\"73\":\"The Green Path - Forgotten Food\",\"74\":\"Rara Avis\",\"75\":\"Mangalore Pearl\",\"76\":\"Kanua\",\"77\":\"South Ruchis Square\",\"78\":\"Maravanthe\",\"79\":\"The Restaurant - Coorg\"},\"Restaurant locality address\":{\"0\":\"Behind MK Retail, Sarjapur Road, Bangalore\",\"1\":\"1004, 26th Main, Next to HDFC Bank, 4th T Block, Jayanagar, Bangalore\",\"2\":\"90\\/4, 3rd Floor, Outer Ring Road, Munnekollaly Village, Marathahalli, Bangalore\",\"3\":\"Ranga Rao Road, Near Shankar Math, Shankarpuram, Near Basavanagudi, Bangalore\",\"4\":\"7th Cross, Margosa Road, Malleshwaram, Bangalore\",\"5\":\"115, 100 Feet Ring Road, Kathriguppe, Banashankari, Bangalore\",\"6\":\"331, 5B, EPIP Zone Landmarks, Near L&T Infotech, Whitefield, Bangalore\",\"7\":\"105, 1st A Cross Road, Jyothi Nivas College Road, Koramangala 5th Block, Bangalore\",\"8\":\"67, 15th Cross, 6th B Main, JP Nagar, Bangalore\",\"9\":\"Next to BSNL, HAL 2nd Stage, 80 Feet Road, Indiranagar, Bangalore\",\"10\":\"607, Ground Floor, 12th Main, Hal 2nd Stage, Indiranagar, Bangalore\",\"11\":\"2008, 2nd Floor, 100 Feet Road, Indiranagar, Bangalore\",\"12\":\"4 & 5, Green Orchards Layout, 1st Cross, Bannerghatta Road, Bangalore\",\"13\":\"14, Lalbagh Road, Mavalli, Basavanagudi, Bangalore\",\"14\":\"187, 15th Cross, Margosa Road, Malleshwaram, Bangalore\",\"15\":\"72, 'Sowparnika', 4th Cross, 1st Main, Koramangala 7th Block, Bangalore\",\"16\":\"18, Ali Askar Road, Cunningham Road, Bangalore\",\"17\":\"202, Level 2, UB City, Vittal Mallya Road, Lavelle Road, Bangalore\",\"18\":\"64, 10th Main Road, 5th Block, Jayanagar, Bangalore\",\"19\":\"4th Floor, Uptown Square, Seegehalli, Near Alliance 10 Downing Villas, Hoskote Road, Whitefield, Bangalore\",\"20\":\"4, Opposite NMKRV College, 21st C Cross Road, 3rd Block, Jayanagar, Bangalore\",\"21\":\"30, B.R.Plaza, 4th Floor, 4th Cross, CMR Road, HRBR Layout, Kalyan Nagar, Bangalore\",\"22\":\"JW Marriott, 24\\/1, Vittal Mallya Road, Lavelle Road, Bangalore\",\"23\":\"16\\/3, Commissariat Road, Brigade Road, Bangalore\",\"24\":\"25\\/4, Opposite Harley Davidson Showroom, Lavelle Road, Bangalore\",\"25\":\"16, 1st Main Road, Muneswara Nagar, Sector 6, HSR, Bangalore\",\"26\":\"43\\/A, 1st Main, Jakkasandra Road,  Near Wipro Park, Koramangala 1st Block, Bangalore\",\"27\":\"Central Street, Tasker Town, Shivajinagar, Bangalore\",\"28\":\"96, 29th Main, 23rd Cross, 2nd Stage, BTM, Bangalore\",\"29\":\"82\\/4B, Next To Wipro Corporate Office, Sarjapur Road, Bangalore\",\"30\":\"1\\/5, Muniswamy Garden, Richmond Road, Bangalore\",\"31\":\"6\\/4, 1st and 2nd Floor, Above Shivananda Stores, Shivananda Circle, Seshadripuram, Bangalore\",\"32\":\"33, 12th Cross, 24th Main, Near Bank Of Baroda, 2nd Phase, JP Nagar, Bangalore\",\"33\":\"187, 16th Main, 24th Cross, 2nd Stage, Banashankari, Bangalore\",\"34\":\"Near Ulsoor Gate Police Station, Cubbonpet, City Market, Bangalore\",\"35\":\"13, AB Square,14th Main, Sector 5, HSR, Bangalore\",\"36\":\"Gandhi Bazaar, Basavanagudi, Bangalore\",\"37\":\"148\\/1, Bilekhahalli Village, Neat IIM Bangalore, Arekere Gate, Bannerghatta Road, Bangalore\",\"38\":\"103, Industrial Area, 5th Block, Near Jyothi Nivas College\",\"39\":\"52, 1st Floor, 33rd Cross, 4th Block, Jayanagar, Bangalore\",\"40\":\"77, Ground Floor, Bellandur Outer Ring Road, Bellandur, Bangalore\",\"41\":\"26, Opposite Shubh Enclave,  Ambalipura Village, Sarjapur Road, Bangalore\",\"42\":\"124, Near Jyothi Nivas College, 1st Cross, KHB Colony\",\"43\":\"20\\/5, 1st Floor, Panathur Junction, Outer Ring Road, Marathahalli, Bangalore\",\"44\":\"60, Jyothi Nivas College Road, Koramangala 5th Block, Bangalore\",\"45\":\"311, Gowra, Binnamangala, 1st Stage, Indiranagar, Bangalore\",\"46\":\"2989\\/B, 12th Main Road, HAL 2nd Stage, Indiranagar, Bangalore\",\"47\":\"1101, 1st Floor, 24th Main, Near ICICI Bank, JP Nagar, Bangalore\",\"48\":\"Gateway Hotel, 66, Residency Road, Bangalore\",\"49\":\"39\\/12, 5th Main Road, Iblur Village, Outer Ring Road, Behind Enzo Hotel, Sarjapur Road, Bangalore\",\"50\":\"1160, 3rd Stage, Nehru Nagar, BEML Layout, Rajarajeshwari Nagar, Bangalore\",\"51\":\"Opposite Manipal North Side Hospital, Near Malleshwaram Railway Station, Malleshwaram, Bangalore\",\"52\":\"Taj West End, Race Course Road, Bangalore\",\"53\":\"Sheraton Grand Bengaluru Whitefield Hotel & Convention Centre Prestige Shantiniketan, Whitefield, Bangalore\",\"54\":\"234, 32 A Cross 2nd Main Road, 7th Block, Jayanagar, Bangalore\",\"55\":\"6, 9th Cross, 9th Main, 2nd Block, Jayanagar, Bangalore\",\"56\":\"150, 9th Main Road, Sector 6, HSR, Bangalore\",\"57\":\"162\\/1, 1st Main, Kumara Park West, Seshadripuram, Bangalore\",\"58\":\"112, Kodathi Gate, Varthur Hobli, Sarjapur Road, Bangalore\",\"59\":\"763, Near Sony World, 100 Feet Road, Indiranagar, Bangalore\",\"60\":\"24th Main Road, 5th Phase, JP Nagar, Bangalore\",\"61\":\"\",\"62\":\"36, Off MG Road, Church Street, Bangalore\",\"63\":\"1319, 100 Feet Road, 2nd Phase, JP Nagar, Bangalore\",\"64\":\"Barton Center, 13th Floor, 84 M.G.Road, MG Road, Bangalore\",\"65\":\"57\\/1, 1st Floor, Jayalaxmi Chambers, Next to Old Galaxy Theatre, Residency Road, Bangalore\",\"66\":\"Level 1, Inorbit Mall, Plot 75, EPIP Area, Whitefield, Bangalore\",\"67\":\"35, Castle Street, Off Brigade Road, Brigade Road, Bangalore\",\"68\":\"35, 4 & 5 th Floor, J.M Plaza, Opposite Shell Petrol Bunk, Sadashiv Nagar, Bangalore\",\"69\":\"138, 1st Cross, KHB Colony, Koramangala 5th Block, Bangalore\",\"70\":\"44\\/1, Residency Road, Bangalore\",\"71\":\"Namma Metro Pillar 62, 100 Feet Road, Indiranagar, Bangalore\",\"72\":\"The Ritz-Carlton, 99, Residency Road, Bangalore\",\"73\":\"The GreenPath, Organic State, Opposite Mantri Metro station, Sampige Road, Rajiv Gandhi Circle, Malleshwaram, Bangalore\",\"74\":\"7-G Block, 20th Main Road, Park View Layout, Sahakara Nagar, Bangalore\",\"75\":\"3, Coles Road, Frazer Town, Bangalore\",\"76\":\"6\\/2, Near Wipro Headquaters,  Kaikondrahalli, Sarjapur Road, Bangalore\",\"77\":\"Raceview Hotel, Ground Floor, Madhava Nagar, Race Course Road, Bangalore\",\"78\":\"322\\/1, 1st Floor, CMH Road, Indiranagar, Bangalore\",\"79\":\"477, Krishna Temple Road, 1st Stage, Off 100 Feet Road, Indiranagar, Bangalore\"},\"Average budget for two people\":{\"0\":1600,\"1\":100,\"2\":1400,\"3\":100,\"4\":200,\"5\":100,\"6\":1700,\"7\":1400,\"8\":1600,\"9\":750,\"10\":1500,\"11\":1400,\"12\":750,\"13\":250,\"14\":150,\"15\":300,\"16\":1000,\"17\":1500,\"18\":1000,\"19\":1600,\"20\":750,\"21\":1400,\"22\":2200,\"23\":1500,\"24\":1300,\"25\":500,\"26\":1200,\"27\":750,\"28\":500,\"29\":1300,\"30\":1000,\"31\":1000,\"32\":100,\"33\":100,\"34\":150,\"35\":300,\"36\":100,\"37\":750,\"38\":750,\"39\":600,\"40\":750,\"41\":1800,\"42\":750,\"43\":1000,\"44\":1500,\"45\":1200,\"46\":1500,\"47\":850,\"48\":3500,\"49\":500,\"50\":150,\"51\":100,\"52\":4000,\"53\":2500,\"54\":300,\"55\":150,\"56\":100,\"57\":300,\"58\":1300,\"59\":2100,\"60\":750,\"61\":2000,\"62\":750,\"63\":800,\"64\":1500,\"65\":750,\"66\":1000,\"67\":750,\"68\":1500,\"69\":800,\"70\":800,\"71\":300,\"72\":3400,\"73\":1100,\"74\":1000,\"75\":550,\"76\":1400,\"77\":800,\"78\":1000,\"79\":1100},\"Zomato user rating\":{\"0\":\"4.9\",\"1\":\"4.9\",\"2\":\"4.8\",\"3\":\"4.8\",\"4\":\"4.6\",\"5\":\"4.6\",\"6\":\"4.6\",\"7\":\"4.5\",\"8\":\"4.5\",\"9\":\"4.4\",\"10\":\"4.4\",\"11\":\"4.4\",\"12\":\"4.4\",\"13\":\"4.4\",\"14\":\"4.4\",\"15\":\"4.4\",\"16\":\"4.3\",\"17\":\"4.3\",\"18\":\"4.3\",\"19\":\"4.3\",\"20\":\"4.3\",\"21\":\"4.3\",\"22\":\"4.2\",\"23\":\"4.3\",\"24\":\"4.3\",\"25\":\"4.3\",\"26\":\"4.3\",\"27\":\"4.3\",\"28\":\"4.3\",\"29\":\"4.3\",\"30\":\"4.3\",\"31\":\"4.3\",\"32\":\"4.3\",\"33\":\"4.3\",\"34\":\"4.3\",\"35\":\"4.3\",\"36\":\"4.3\",\"37\":\"4.2\",\"38\":\"4.2\",\"39\":\"4.1\",\"40\":\"4.2\",\"41\":\"4.2\",\"42\":\"4.2\",\"43\":\"4.2\",\"44\":\"4.2\",\"45\":\"4.2\",\"46\":\"4.2\",\"47\":\"4.2\",\"48\":\"4.2\",\"49\":\"4.2\",\"50\":\"4.2\",\"51\":\"4.2\",\"52\":\"4.3\",\"53\":\"4.2\",\"54\":\"4.2\",\"55\":\"4.2\",\"56\":\"4.2\",\"57\":\"4.1\",\"58\":\"4.1\",\"59\":\"4.1\",\"60\":\"4.1\",\"61\":\"4.1\",\"62\":\"4.0\",\"63\":\"4.1\",\"64\":\"4.1\",\"65\":\"4.1\",\"66\":\"4.1\",\"67\":\"4.1\",\"68\":\"4.1\",\"69\":\"4.1\",\"70\":\"4.1\",\"71\":\"4.1\",\"72\":\"4.1\",\"73\":\"4.1\",\"74\":\"4.1\",\"75\":\"4.1\",\"76\":\"4.1\",\"77\":\"4.1\",\"78\":\"4.1\",\"79\":\"4.1\"}}"}
     - action_restaurant
-    - utter_goodbye
-    - export
-
-## Generated Story 1993277579540566202
-* greet
-    - utter_greet
-* restaurant_search
-    - utter_ask_location
-* restaurant_search{"location": "mumbai"}
-    - slot{"location": "mumbai"}
-    - utter_ask_cuisine
-* restaurant_search{"cuisine": "North Indian"}
-    - slot{"cuisine": "North Indian"}
-    - utter_ask_budget
-* restaurant_search{"budget": "moderate"}
-    - slot{"budget": "moderate"}
-    - action_restaurant
-* goodbye
-    - utter_goodbye
-
-## Generated Story 3320800183399695936
-* greet
-    - utter_greet
-* restaurant_search
-    - utter_ask_location
-* restaurant_search{"location": "italy", "budget": "cheap"}
-    - slot{"location": "italy"}
-	- slot{"budget": "cheap"}
-	- utter_ask_cuisine
-* restaurant_search{"cuisine": "chinese"}
-    - slot{"cuisine": "chinese"}
-    - action_restaurant
-* goodbye
-    - utter_goodbye
-
-## Generated Story -4639179087166749998
-* greet
-    - utter_greet
-* restaurant_search
-    - utter_ask_location
-* restaurant_search{"location": "hyderabad", "cuisine": "Mexican", "budget": "expensive"}
-    - slot{"location": "hyderabad"}
-    - slot{"cuisine": "Mexican"}
-    - slot{"budget": "expensive"}
-    - action_restaurant
-    - slot{"location": "delhi"}
-    - export
-
-
-## Generated Story 4963448062290237512
-* greet
-    - utter_greet
-* restaurant_search{"location": "delhi", "cuisine": "chinese"}
-    - slot{"location": "delhi"}
-    - slot{"cuisine": "chinese"}
-    - utter_ask_budget
-* restaurant_search{"budget": "moderate"}
-    - slot{"budget": "moderate"}
-    - action_restaurant
-* goodbye
-    - utter_goodbye
-    - export
-
-## Generated Story -9057212234804734937
-* greet
-    - utter_greet
-* restaurant_search
-    - utter_ask_location
-* restaurant_search{"location": "hyderabad"}
-    - slot{"location": "hyderabad"}
-    - utter_ask_cuisine
-* restaurant_search{"cuisine": "South Indian", "budget": "expensive"}
-    - slot{"cuisine": "chinese"}
-	- slot{"budget": "expensive"}
-    - action_restaurant
-    - utter_ask_email_question
-* ask_email_address
-    - utter_ask_for_email_id
+    - slot{"res_restaurant": "Taaza Thindi in 1004, 26th Main, Next to HDFC Bank, 4th T Block, Jayanagar, Bangalore has been rated 4.9\nBrahmin's Coffee Bar in Ranga Rao Road, Near Shankar Math, Shankarpuram, Near Basavanagudi, Bangalore has been rated 4.8\nTaaza Thindi in 115, 100 Feet Ring Road, Kathriguppe, Banashankari, Bangalore has been rated 4.6\nCTR in 7th Cross, Margosa Road, Malleshwaram, Bangalore has been rated 4.6\nVeena Stores in 187, 15th Cross, Margosa Road, Malleshwaram, Bangalore has been rated 4.4\n"}
+    - utter_restaurant_search_results
+    - utter_ask_send_email
 * affirm
-    - action_send_data{"email_id": "abc@gmail.com"}
-    - utter_goodbye
+    - utter_ask_email
+* send_email{"email": "rahul.mathur@iiitb.net"}
+    - slot{"email": "rahul.mathur@iiitb.net"}
+    - action_send_data
+    - action_bye
     - export
-
-
-## Generated Story -9057212234804734938
+	- action_restarted
+## Generated Story -7912161420148540817
 * greet
     - utter_greet
-* restaurant_search
-    - utter_ask_location
-* restaurant_search{"location": "delhi", "budget": "cheap"}
-    - slot{"location": "hyderabad"}
-	- slot {"budget": "cheap"}
-    - utter_ask_cuisine
-* restaurant_search{"cuisine": "Italian"}
-    - action_restaurant
-    - utter_ask_email_question
-* ask_email_address
-    - utter_ask_for_email_id
-* affirm
-    - action_send_data{"email_id": "abc@gmail.com"}
-    - utter_goodbye
-    - export
-
-## Generated Story -9057212234804734941
-* greet
-    - utter_greet
-* restaurant_search
-    - utter_ask_location
-* restaurant_search{"location": "ahmedabad"}
-    - slot{"location": "ahmedabad"}
-    - utter_ask_cuisine
-* restaurant_search{"cuisine": "North Indian"}
+* restaurant_search{"cuisine": "chinese", "location": "delhi"}
+    - slot{"cuisine": "chinese"}
+    - slot{"location": "delhi"}
     - utter_ask_budget
-* restaurant_search{"budget": "moderate"}
-    - action_restaurant
-    - utter_ask_email_question
-* ask_email_address
-    - utter_ask_for_email_id
-* affirm
-    - action_send_data{"email_id": "xyz@gmail.com"}
-    - utter_goodbye
+* restaurant_search{"budget": "300-700 range"}
+    - slot{"budget": "300-700 range"}
+    - action_fetch_form_and_data
+    - slot{"budget": "300-700 range"}
+    - slot{"result_restaurants_details": "{\"Name\":{\"0\":\"Feel ALIVE\",\"1\":\"Ministry Of Beer\",\"2\":\"Phonebooth Reloaded\",\"3\":\"Mellow Garden\",\"4\":\"38 Barracks\",\"5\":\"Punjabi Angithi\",\"6\":\"The Hook\",\"7\":\"Burma Burma\",\"8\":\"Orient Heritage\",\"9\":\"CIA Call it Asiian\",\"10\":\"Feel ALIVE\",\"11\":\"Ministry Of Beer\",\"12\":\"Phonebooth Reloaded\",\"13\":\"Mellow Garden\",\"14\":\"38 Barracks\",\"15\":\"Punjabi Angithi\",\"16\":\"The Hook\",\"17\":\"Burma Burma\",\"18\":\"Orient Heritage\",\"19\":\"CIA Call it Asiian\",\"20\":\"Feel ALIVE\",\"21\":\"Ministry Of Beer\",\"22\":\"Phonebooth Reloaded\",\"23\":\"Mellow Garden\",\"24\":\"38 Barracks\",\"25\":\"Punjabi Angithi\",\"26\":\"The Hook\",\"27\":\"Burma Burma\",\"28\":\"Orient Heritage\",\"29\":\"CIA Call it Asiian\",\"30\":\"Feel ALIVE\",\"31\":\"Ministry Of Beer\",\"32\":\"Phonebooth Reloaded\",\"33\":\"Mellow Garden\",\"34\":\"38 Barracks\",\"35\":\"Punjabi Angithi\",\"36\":\"The Hook\",\"37\":\"Burma Burma\",\"38\":\"Orient Heritage\",\"39\":\"CIA Call it Asiian\",\"40\":\"Feel ALIVE\",\"41\":\"Ministry Of Beer\",\"42\":\"Phonebooth Reloaded\",\"43\":\"Mellow Garden\",\"44\":\"38 Barracks\",\"45\":\"Punjabi Angithi\",\"46\":\"The Hook\",\"47\":\"Burma Burma\",\"48\":\"Orient Heritage\",\"49\":\"CIA Call it Asiian\"},\"Address\":{\"0\":\"SCO 53, 2nd Floor, Main Market, Sector 29, Gurgaon\",\"1\":\"M 43, Outer Circle, Connaught Place, New Delhi\",\"2\":\"G14b, Ground Floor, Vijay Nagar, Hudson lane, Delhi University-GTB Nagar, New Delhi\",\"3\":\"J2\\/7, 2nd & 3rd Floor, BK Dutta Market, Rajouri Garden, New Delhi\",\"4\":\"M-38, Outer Circle, Opposite Shankar Market, Connaught Place, New Delhi\",\"5\":\"Shop 32-22, A-4, DDA Market, Paschim Vihar, New Delhi\",\"6\":\"SCO 30, Sector 29, Gurgaon\",\"7\":\"S 25, Second Floor, A 3, Select Citywalk Mall, Saket, New Delhi\",\"8\":\"90\\/61B, Malviya Nagar Market\",\"9\":\"16, Narmada Shopping Complex,Opposite Don Bosco School, Greater Kailash 2 (GK2), New Delhi\",\"10\":\"SCO 53, 2nd Floor, Main Market, Sector 29, Gurgaon\",\"11\":\"M 43, Outer Circle, Connaught Place, New Delhi\",\"12\":\"G14b, Ground Floor, Vijay Nagar, Hudson lane, Delhi University-GTB Nagar, New Delhi\",\"13\":\"J2\\/7, 2nd & 3rd Floor, BK Dutta Market, Rajouri Garden, New Delhi\",\"14\":\"M-38, Outer Circle, Opposite Shankar Market, Connaught Place, New Delhi\",\"15\":\"Shop 32-22, A-4, DDA Market, Paschim Vihar, New Delhi\",\"16\":\"SCO 30, Sector 29, Gurgaon\",\"17\":\"S 25, Second Floor, A 3, Select Citywalk Mall, Saket, New Delhi\",\"18\":\"90\\/61B, Malviya Nagar Market\",\"19\":\"16, Narmada Shopping Complex,Opposite Don Bosco School, Greater Kailash 2 (GK2), New Delhi\",\"20\":\"SCO 53, 2nd Floor, Main Market, Sector 29, Gurgaon\",\"21\":\"M 43, Outer Circle, Connaught Place, New Delhi\",\"22\":\"G14b, Ground Floor, Vijay Nagar, Hudson lane, Delhi University-GTB Nagar, New Delhi\",\"23\":\"J2\\/7, 2nd & 3rd Floor, BK Dutta Market, Rajouri Garden, New Delhi\",\"24\":\"M-38, Outer Circle, Opposite Shankar Market, Connaught Place, New Delhi\",\"25\":\"Shop 32-22, A-4, DDA Market, Paschim Vihar, New Delhi\",\"26\":\"SCO 30, Sector 29, Gurgaon\",\"27\":\"S 25, Second Floor, A 3, Select Citywalk Mall, Saket, New Delhi\",\"28\":\"90\\/61B, Malviya Nagar Market\",\"29\":\"16, Narmada Shopping Complex,Opposite Don Bosco School, Greater Kailash 2 (GK2), New Delhi\",\"30\":\"SCO 53, 2nd Floor, Main Market, Sector 29, Gurgaon\",\"31\":\"M 43, Outer Circle, Connaught Place, New Delhi\",\"32\":\"G14b, Ground Floor, Vijay Nagar, Hudson lane, Delhi University-GTB Nagar, New Delhi\",\"33\":\"J2\\/7, 2nd & 3rd Floor, BK Dutta Market, Rajouri Garden, New Delhi\",\"34\":\"M-38, Outer Circle, Opposite Shankar Market, Connaught Place, New Delhi\",\"35\":\"Shop 32-22, A-4, DDA Market, Paschim Vihar, New Delhi\",\"36\":\"SCO 30, Sector 29, Gurgaon\",\"37\":\"S 25, Second Floor, A 3, Select Citywalk Mall, Saket, New Delhi\",\"38\":\"90\\/61B, Malviya Nagar Market\",\"39\":\"16, Narmada Shopping Complex,Opposite Don Bosco School, Greater Kailash 2 (GK2), New Delhi\",\"40\":\"SCO 53, 2nd Floor, Main Market, Sector 29, Gurgaon\",\"41\":\"M 43, Outer Circle, Connaught Place, New Delhi\",\"42\":\"G14b, Ground Floor, Vijay Nagar, Hudson lane, Delhi University-GTB Nagar, New Delhi\",\"43\":\"J2\\/7, 2nd & 3rd Floor, BK Dutta Market, Rajouri Garden, New Delhi\",\"44\":\"M-38, Outer Circle, Opposite Shankar Market, Connaught Place, New Delhi\",\"45\":\"Shop 32-22, A-4, DDA Market, Paschim Vihar, New Delhi\",\"46\":\"SCO 30, Sector 29, Gurgaon\",\"47\":\"S 25, Second Floor, A 3, Select Citywalk Mall, Saket, New Delhi\",\"48\":\"90\\/61B, Malviya Nagar Market\",\"49\":\"16, Narmada Shopping Complex,Opposite Don Bosco School, Greater Kailash 2 (GK2), New Delhi\"},\"Avg budget for two\":{\"0\":1200,\"1\":1500,\"2\":1000,\"3\":1200,\"4\":1600,\"5\":500,\"6\":1600,\"7\":1500,\"8\":850,\"9\":800,\"10\":1200,\"11\":1500,\"12\":1000,\"13\":1200,\"14\":1600,\"15\":500,\"16\":1600,\"17\":1500,\"18\":850,\"19\":800,\"20\":1200,\"21\":1500,\"22\":1000,\"23\":1200,\"24\":1600,\"25\":500,\"26\":1600,\"27\":1500,\"28\":850,\"29\":800,\"30\":1200,\"31\":1500,\"32\":1000,\"33\":1200,\"34\":1600,\"35\":500,\"36\":1600,\"37\":1500,\"38\":850,\"39\":800,\"40\":1200,\"41\":1500,\"42\":1000,\"43\":1200,\"44\":1600,\"45\":500,\"46\":1600,\"47\":1500,\"48\":850,\"49\":800},\"Rating\":{\"0\":\"4.9\",\"1\":\"4.9\",\"2\":\"4.9\",\"3\":\"4.9\",\"4\":\"4.8\",\"5\":\"4.8\",\"6\":\"4.8\",\"7\":\"4.8\",\"8\":\"4.8\",\"9\":\"4.8\",\"10\":\"4.9\",\"11\":\"4.9\",\"12\":\"4.9\",\"13\":\"4.9\",\"14\":\"4.8\",\"15\":\"4.8\",\"16\":\"4.8\",\"17\":\"4.8\",\"18\":\"4.8\",\"19\":\"4.8\",\"20\":\"4.9\",\"21\":\"4.9\",\"22\":\"4.9\",\"23\":\"4.9\",\"24\":\"4.8\",\"25\":\"4.8\",\"26\":\"4.8\",\"27\":\"4.8\",\"28\":\"4.8\",\"29\":\"4.8\",\"30\":\"4.9\",\"31\":\"4.9\",\"32\":\"4.9\",\"33\":\"4.9\",\"34\":\"4.8\",\"35\":\"4.8\",\"36\":\"4.8\",\"37\":\"4.8\",\"38\":\"4.8\",\"39\":\"4.8\",\"40\":\"4.9\",\"41\":\"4.9\",\"42\":\"4.9\",\"43\":\"4.9\",\"44\":\"4.8\",\"45\":\"4.8\",\"46\":\"4.8\",\"47\":\"4.8\",\"48\":\"4.8\",\"49\":\"4.8\"}}"}
+    - utter_restaurant_search_results
+    - utter_restaurant_search_results
+    - utter_ask_send_email
+* send_email
+    - action_send_data
+    - slot{"email": "cirilla2510@gmail.com"}
+    - action_send_data
+    - slot{"email": "cirilla2510@gmail.com"}
+    - utter_email_sent_successfully
+    - action_bye
+    - reset_slots
     - export
 
-
-
+## Generated Story 8656396909822200910
+* greet
+    - utter_greet
+* restaurant_search{"location": "noida"}
+    - slot{"location": "noida"}
+    - action_fetch_form_and_data
+    - slot{"location": "noida"}
+    - slot{"requested_slot": "cuisine"}
+* restaurant_search{"cuisine": "italian"}
+    - slot{"cuisine": "italian"}
+    - action_fetch_form_and_data
+    - slot{"cuisine": "italian"}
+    - slot{"requested_slot": "budget"}
+* send_email{"budget": ">700"}
+    - slot{"budget": ">700"}
+    - action_fetch_form_and_data
+    - slot{"budget": ">700"}
+    - slot{"result_restaurants_details": "{\"Name\":{\"0\":\"Feel ALIVE\",\"1\":\"Ministry Of Beer\",\"2\":\"Phonebooth Reloaded\",\"3\":\"Mellow Garden\",\"4\":\"38 Barracks\",\"5\":\"The Hook\",\"6\":\"Cafe Cones & Curries\",\"7\":\"Phonebooth Express\",\"8\":\"Foodflix\",\"9\":\"The Whisky Bar & Brewpub\",\"10\":\"Feel ALIVE\",\"11\":\"Ministry Of Beer\",\"12\":\"Phonebooth Reloaded\",\"13\":\"Mellow Garden\",\"14\":\"38 Barracks\",\"15\":\"The Hook\",\"16\":\"Cafe Cones & Curries\",\"17\":\"Phonebooth Express\",\"18\":\"Foodflix\",\"19\":\"The Whisky Bar & Brewpub\",\"20\":\"Feel ALIVE\",\"21\":\"Ministry Of Beer\",\"22\":\"Phonebooth Reloaded\",\"23\":\"Mellow Garden\",\"24\":\"38 Barracks\",\"25\":\"The Hook\",\"26\":\"Cafe Cones & Curries\",\"27\":\"Phonebooth Express\",\"28\":\"Foodflix\",\"29\":\"The Whisky Bar & Brewpub\",\"30\":\"Feel ALIVE\",\"31\":\"Ministry Of Beer\",\"32\":\"Phonebooth Reloaded\",\"33\":\"Mellow Garden\",\"34\":\"38 Barracks\",\"35\":\"The Hook\",\"36\":\"Cafe Cones & Curries\",\"37\":\"Phonebooth Express\",\"38\":\"Foodflix\",\"39\":\"The Whisky Bar & Brewpub\",\"40\":\"Feel ALIVE\",\"41\":\"Ministry Of Beer\",\"42\":\"Phonebooth Reloaded\",\"43\":\"Mellow Garden\",\"44\":\"38 Barracks\",\"45\":\"The Hook\",\"46\":\"Cafe Cones & Curries\",\"47\":\"Phonebooth Express\",\"48\":\"Foodflix\",\"49\":\"The Whisky Bar & Brewpub\"},\"Address\":{\"0\":\"SCO 53, 2nd Floor, Main Market, Sector 29, Gurgaon\",\"1\":\"M 43, Outer Circle, Connaught Place, New Delhi\",\"2\":\"G14b, Ground Floor, Vijay Nagar, Hudson lane, Delhi University-GTB Nagar, New Delhi\",\"3\":\"J2\\/7, 2nd & 3rd Floor, BK Dutta Market, Rajouri Garden, New Delhi\",\"4\":\"M-38, Outer Circle, Opposite Shankar Market, Connaught Place, New Delhi\",\"5\":\"SCO 30, Sector 29, Gurgaon\",\"6\":\"A44&44 Galaxybusiness park galactic court shop no 8\",\"7\":\"Delhi University-GTB Nagar, New Delhi\",\"8\":\"Rajouri Garden, New Delhi\",\"9\":\"SCO 53, 3rd Floor, Sector 29, Gurgaon\",\"10\":\"SCO 53, 2nd Floor, Main Market, Sector 29, Gurgaon\",\"11\":\"M 43, Outer Circle, Connaught Place, New Delhi\",\"12\":\"G14b, Ground Floor, Vijay Nagar, Hudson lane, Delhi University-GTB Nagar, New Delhi\",\"13\":\"J2\\/7, 2nd & 3rd Floor, BK Dutta Market, Rajouri Garden, New Delhi\",\"14\":\"M-38, Outer Circle, Opposite Shankar Market, Connaught Place, New Delhi\",\"15\":\"SCO 30, Sector 29, Gurgaon\",\"16\":\"A44&44 Galaxybusiness park galactic court shop no 8\",\"17\":\"Delhi University-GTB Nagar, New Delhi\",\"18\":\"Rajouri Garden, New Delhi\",\"19\":\"SCO 53, 3rd Floor, Sector 29, Gurgaon\",\"20\":\"SCO 53, 2nd Floor, Main Market, Sector 29, Gurgaon\",\"21\":\"M 43, Outer Circle, Connaught Place, New Delhi\",\"22\":\"G14b, Ground Floor, Vijay Nagar, Hudson lane, Delhi University-GTB Nagar, New Delhi\",\"23\":\"J2\\/7, 2nd & 3rd Floor, BK Dutta Market, Rajouri Garden, New Delhi\",\"24\":\"M-38, Outer Circle, Opposite Shankar Market, Connaught Place, New Delhi\",\"25\":\"SCO 30, Sector 29, Gurgaon\",\"26\":\"A44&44 Galaxybusiness park galactic court shop no 8\",\"27\":\"Delhi University-GTB Nagar, New Delhi\",\"28\":\"Rajouri Garden, New Delhi\",\"29\":\"SCO 53, 3rd Floor, Sector 29, Gurgaon\",\"30\":\"SCO 53, 2nd Floor, Main Market, Sector 29, Gurgaon\",\"31\":\"M 43, Outer Circle, Connaught Place, New Delhi\",\"32\":\"G14b, Ground Floor, Vijay Nagar, Hudson lane, Delhi University-GTB Nagar, New Delhi\",\"33\":\"J2\\/7, 2nd & 3rd Floor, BK Dutta Market, Rajouri Garden, New Delhi\",\"34\":\"M-38, Outer Circle, Opposite Shankar Market, Connaught Place, New Delhi\",\"35\":\"SCO 30, Sector 29, Gurgaon\",\"36\":\"A44&44 Galaxybusiness park galactic court shop no 8\",\"37\":\"Delhi University-GTB Nagar, New Delhi\",\"38\":\"Rajouri Garden, New Delhi\",\"39\":\"SCO 53, 3rd Floor, Sector 29, Gurgaon\",\"40\":\"SCO 53, 2nd Floor, Main Market, Sector 29, Gurgaon\",\"41\":\"M 43, Outer Circle, Connaught Place, New Delhi\",\"42\":\"G14b, Ground Floor, Vijay Nagar, Hudson lane, Delhi University-GTB Nagar, New Delhi\",\"43\":\"J2\\/7, 2nd & 3rd Floor, BK Dutta Market, Rajouri Garden, New Delhi\",\"44\":\"M-38, Outer Circle, Opposite Shankar Market, Connaught Place, New Delhi\",\"45\":\"SCO 30, Sector 29, Gurgaon\",\"46\":\"A44&44 Galaxybusiness park galactic court shop no 8\",\"47\":\"Delhi University-GTB Nagar, New Delhi\",\"48\":\"Rajouri Garden, New Delhi\",\"49\":\"SCO 53, 3rd Floor, Sector 29, Gurgaon\"},\"Avg budget for two\":{\"0\":1200,\"1\":1500,\"2\":1000,\"3\":1200,\"4\":1600,\"5\":1600,\"6\":400,\"7\":800,\"8\":650,\"9\":1800,\"10\":1200,\"11\":1500,\"12\":1000,\"13\":1200,\"14\":1600,\"15\":1600,\"16\":400,\"17\":800,\"18\":650,\"19\":1800,\"20\":1200,\"21\":1500,\"22\":1000,\"23\":1200,\"24\":1600,\"25\":1600,\"26\":400,\"27\":800,\"28\":650,\"29\":1800,\"30\":1200,\"31\":1500,\"32\":1000,\"33\":1200,\"34\":1600,\"35\":1600,\"36\":400,\"37\":800,\"38\":650,\"39\":1800,\"40\":1200,\"41\":1500,\"42\":1000,\"43\":1200,\"44\":1600,\"45\":1600,\"46\":400,\"47\":800,\"48\":650,\"49\":1800},\"Rating\":{\"0\":\"4.9\",\"1\":\"4.9\",\"2\":\"4.9\",\"3\":\"4.9\",\"4\":\"4.8\",\"5\":\"4.8\",\"6\":\"4.8\",\"7\":\"4.8\",\"8\":\"4.8\",\"9\":\"4.8\",\"10\":\"4.9\",\"11\":\"4.9\",\"12\":\"4.9\",\"13\":\"4.9\",\"14\":\"4.8\",\"15\":\"4.8\",\"16\":\"4.8\",\"17\":\"4.8\",\"18\":\"4.8\",\"19\":\"4.8\",\"20\":\"4.9\",\"21\":\"4.9\",\"22\":\"4.9\",\"23\":\"4.9\",\"24\":\"4.8\",\"25\":\"4.8\",\"26\":\"4.8\",\"27\":\"4.8\",\"28\":\"4.8\",\"29\":\"4.8\",\"30\":\"4.9\",\"31\":\"4.9\",\"32\":\"4.9\",\"33\":\"4.9\",\"34\":\"4.8\",\"35\":\"4.8\",\"36\":\"4.8\",\"37\":\"4.8\",\"38\":\"4.8\",\"39\":\"4.8\",\"40\":\"4.9\",\"41\":\"4.9\",\"42\":\"4.9\",\"43\":\"4.9\",\"44\":\"4.8\",\"45\":\"4.8\",\"46\":\"4.8\",\"47\":\"4.8\",\"48\":\"4.8\",\"49\":\"4.8\"}}"}
+    - utter_restaurant_search_results
+    - utter_ask_email
+    - utter_ask_send_email
+* send_email
+    - action_send_data
+    - slot{"email": "cirilla2510@gmail"}
+    - action_send_data
+    - slot{"email": "cirilla2510@gmail"}
+    - utter_ask_send_email
+* send_email
+    - action_bye
+    - reset_slots
+    - export
 

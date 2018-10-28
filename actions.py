@@ -4,152 +4,216 @@ from __future__ import unicode_literals
 
 from rasa_core.actions.action import Action
 from rasa_core.events import SlotSet
+from rasa_core.events import AllSlotsReset
+from rasa_core.events import Restarted
 import zomatopy
 import json
 import settings
+import pandas as pd
+import re
 from email_service import send_msg_to_clinet
 
+from rasa_core.actions.forms import (
+    BooleanFormField,
+    EntityFormField,
+    FormAction,
+    FreeTextFormField
+)
+
+#This action procreates the data to be used later
+class ActionFetchFormAndData(FormAction):
+	RANDOMIZE = False
+	@staticmethod
+	def required_fields():
+		return [
+		EntityFormField("location", "location"),
+		EntityFormField("cuisine", "cuisine"),
+		EntityFormField("budget", "budget")
+		]
+		
+	def name(self):
+		return 'action_fetch_form_and_data'
+		
+	def submit(self, dispatcher, tracker, domain):
+		config={ "user_key":"2fab14e6a218fa1238aa56e9da9581b7"}
+		zomato = zomatopy.initialize_app(config)
+		loc = tracker.get_slot('location')
+		cuisine = tracker.get_slot('cuisine')
+		budget_range = int(tracker.get_slot('budget'))
+			
+		location_detail=zomato.get_location(loc, 1)
+		d1 = json.loads(location_detail)
+		lat=d1["location_suggestions"][0]["latitude"]
+		lon=d1["location_suggestions"][0]["longitude"]
+		cuisines_dict={'mexican':73,'chinese':25,'italian':55,'american':1,'north indian':50,'south indian':85}
+		
+		# create a corpus in the form of dataframe
+		cached_res = pd.DataFrame(columns=['Name','Address','Avg budget for two','Rating'])
+		count = 0
+		while count != 5:
+			results=zomato.restaurant_search("", lat, lon, str(cuisines_dict.get(cuisine)), 10)
+			d = json.loads(results)
+			response=""
+			if d['results_found'] == 0:
+				break
+			else:
+				for restaurant in d['restaurants']:
+					cached_res = cached_res.append({'Name':restaurant['restaurant']['name'],
+															'Address': restaurant['restaurant']['location']['address'],
+															'Avg budget for two':restaurant['restaurant']['average_cost_for_two'],
+															'Rating':restaurant['restaurant']['user_rating']['aggregate_rating']},ignore_index=True)
+			count+=1
+			
+		if len(cached_res) == 0:
+			dispatcher.utter_template("utter_no_restaurants_found", tracker)
+			SlotSet("budget", None)
+			return[SlotSet("cuisine", None)]
+		else:
+			return[SlotSet("result_restaurants_details",cached_res.to_json())]
+
+
 class ActionSearchRestaurants(Action):
-    def name(self):
-        return 'action_restaurant'
+	def name(self):
+		return 'action_restaurant'
 
-    def run(self, dispatcher, tracker, domain):
-        #config={ "user_key":"6ce88a5ec1419e335afa1c7f92f4b739"}
-        config={"user_key":"db5885b95cb656b7ad69ef10ef3bc85c"}
-        zomato = zomatopy.initialize_app(config)
-        entries = 1
-        budget_lower_limit = 0
-        budget_higher_limit = 0
-        try:
-            loc = tracker.get_slot('location')
-            cuisine = tracker.get_slot('cuisine')
-            budget_code = int(tracker.get_slot('budget'))
-
-            print ("Location: ", loc)
-            print ("Cuisine:" , cuisine)
-            print ("budget: ", budget_code)
-            print ("Budget is: ", budget_code)
-
-            if budget_code <= 300:
-                budget_higher_limit = 300
-            elif budget_code >= 300 and budget_code <= 700 :
-                budget_lower_limit = 300
-                budget_higher_limit = 700
-            else:
-                budget_lower_limit = 700
-                budget_higher_limit = 5000
-
-            print ("Lower limit is:", budget_lower_limit)
-            print ("Higher limit is:", budget_higher_limit)
-
-            if str(loc) not in (settings.TIER_1 or settings.TIER_2):
-                response = "We do not operate in that area yet"
-
-            else:
-                location_detail=zomato.get_location(loc, 1)
-                d1 = json.loads(location_detail)
-                print("Location Details:", d1)
-                lat=d1["location_suggestions"][0]["latitude"]
-                lon=d1["location_suggestions"][0]["longitude"]
-                cuisines_dict={'bakery':5,'chinese':25,'cafe':30,'italian':55,'biryani':7,'north indian':50,'south indian':85,
-                               'American': 1, 'Mexican': 73}
-                results=zomato.restaurant_search("", lat, lon, str(cuisines_dict.get(cuisine)), 25)
-                # print ("Response of zomaoto: ", results)
-                try:
-                    d = json.loads(results)
-                except Exception:
-                    print ("Exception in loads going with encode")
-                    result = results.encode('utf8')
-                    d = json.loads(result)
-                response=""
-                print ("Response of zomaoto: ", d)
-                if d['results_found'] == 0:
-                    response= "no results"
-                else:
-                    for restaurant in d['restaurants']:
-                        print ("restaurant is: ", restaurant)
-                        if int(budget_lower_limit) <= int(restaurant['restaurant']['average_cost_for_two']) <= int(budget_higher_limit):
-                            print ("Restaurant in limit")
-                            if entries <= 5:
-                                print ("5 not found")
-                                entries += 1
-                                response=response+ "Found "+ restaurant['restaurant']['name']+ " in "+ \
-                                         restaurant['restaurant']['location']['address'] + " has been rated "+ \
-                                         str(restaurant['restaurant']['user_rating']['aggregate_rating']) + "\n"
-
-            dispatcher.utter_message("-----"+response)
-            return [SlotSet('location',loc)]
-        except Exception as e:
-            print ("Exception is : ", e)
+	def run(self, dispatcher, tracker, domain):
+		response = ""
+		try:
+			loc = tracker.get_slot('location')
+			cuisine = tracker.get_slot('cuisine')
+			budget_code = tracker.get_slot('budget')
+			cached_res = pd.read_json(tracker.get_slot('result_restaurants_details'))
+			cuisines=['mexican','chinese','italian','american','north indian','south indian']
+			
+			print('Budget_range: ', budget_code)
+			print('Cuisine: ', cuisine)
+			
+			if loc not in (settings.TIER_1 or settings.TIER_2):
+				dispatcher.utter_template("utter_invalid_location",tracker)
+				return [SlotSet('location',None)]
+			
+			if 	cuisine not in cuisines:
+				dispatcher.utter_template("utter_invalid_cuisine",tracker)
+				return [SlotSet('cuisine',None)]
+			
+			if str(budget_code) not in ["<300","300-700 range",">700"]:
+				return[SlotSet('budget', None)]
+			
+			if budget_code == "<300":
+				res = cached_res[cached_res['Avg budget for two'] <=300]
+				res.sort_values('Rating',ascending=False,inplace=True)
+				if len(res) == 0:
+					SlotSet("budget", None)
+					dispatcher.utter_template("utter_no_restaurants_found", tracker)
+					return[SlotSet("res_restaurant", None)]
+				else:
+					for index, row in res.head(5).iterrows():
+						response = response+row['Name']+" in "+ row['Address']+" has been rated "+str(row['Rating'])+"\n"
+					return[SlotSet("res_restaurant", response)]
+			
+			elif budget_code == "300-700 range":
+				res = cached_res[(cached_res['Avg budget for two'] > 300) &  (cached_res['Avg budget for two'] <= 700)]
+				res.sort_values('Rating',ascending=False,inplace=True)
+				if len(res) == 0:
+					SlotSet("budget", None)
+					dispatcher.utter_template("utter_no_restaurants_found", tracker)
+					return[SlotSet("res_restaurant", None)]
+				else:
+					for index, row in res.head(5).iterrows():
+						response = response+row['Name']+" in "+ row['Address']+" has been rated "+str(row['Rating'])+"\n"
+					return[SlotSet("res_restaurant", response)]
+			
+			elif budget_code == ">700":				
+				res = cached_res[cached_res['Avg budget for two'] >700]
+				res.sort_values('Rating',ascending=False,inplace=True)
+				if len(res) == 0:
+					SlotSet("budget", None)
+					dispatcher.utter_template("utter_no_restaurants_found", tracker)
+					return[SlotSet("res_restaurant", None)]
+				else:
+					for index, row in res.head(5).iterrows():
+						response = response+row['Name']+" in "+ row['Address']+" has been rated "+str(row['Rating'])+"\n"	
+					return[SlotSet("res_restaurant", response)]
+		except Exception as e:
+			print ("Exception is : ", e)
 
 
 class ActionSendRestaurantData(Action):
-    def name(self):
-        return 'action_send_data'
+	def name(self):
+		return 'action_send_data'
 
-    def run(self, dispatcher, tracker, domain):
-        config={ "user_key":"6ce88a5ec1419e335afa1c7f92f4b739"}
-        zomato = zomatopy.initialize_app(config)
-        entries = 1
-        budget_lower_limit = 0
-        budget_higher_limit = 0
-        try:
-            loc = tracker.get_slot('location')
-            cuisine = tracker.get_slot('cuisine')
-            budget_code = tracker.get_slot('budget')
-            email_id = tracker.get_slot('email_id')
+	def run(self, dispatcher, tracker, domain):
+		email_id = tracker.get_slot('email')
+		if email_id == None:
+			dispatcher.utter_template("utter_email_not_recognized", tracker)
+			return[SlotSet('email',None)]
+			
+		list_email = re.findall('([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)',email_id) 
+		try:
+			loc = tracker.get_slot('location')
+			cuisine = tracker.get_slot('cuisine')
+			budget_code = tracker.get_slot('budget')
+			cached_res = pd.read_json(tracker.get_slot('result_restaurants_details'))
+			
+			if budget_code == "<300":
+				res = cached_res[cached_res['Avg budget for two'] <=300]
+				res.sort_values('Rating',ascending=False,inplace=True)
+				if len(res) == 0:
+					SlotSet("budget", None)
+					dispatcher.utter_template("utter_no_restaurants_found", tracker)
+					return[SlotSet("res_restaurant", None)]
+				else:
+					for index, row in res.head(10).iterrows():
+						response = response+row['Name']+" in "+ row['Address']+" has been rated "+str(row['Rating'])+"\n"
+					return[SlotSet("res_restaurant", response)]
+			
+			elif budget_code == "300-700 range":
+				res = cached_res[(cached_res['Avg budget for two'] > 300) &  (cached_res['Avg budget for two'] <= 700)]
+				res.sort_values('Rating',ascending=False,inplace=True)
+				if len(res) == 0 :
+					SlotSet("budget", None)
+					dispatcher.utter_template("utter_no_restaurants_found", tracker)
+					return[SlotSet("res_restaurant", None)]
+				else:
+					for index, row in res.head(10).iterrows():
+						response = response+row['Name']+" in "+ row['Address']+" has been rated "+str(row['Rating'])+"\n"
+					return[SlotSet("res_restaurant", response)]
+			
+			elif budget_code == ">700":				
+				res = cached_res[cached_res['Avg budget for two'] >700]
+				res.sort_values('Rating',ascending=False,inplace=True)
+				if len(res) == 0:
+					SlotSet("budget", None)
+					dispatcher.utter_template("utter_no_restaurants_found", tracker)
+					return[SlotSet("res_restaurant", None)]
+				else:
+					for index, row in res.head(10).iterrows():
+						response = response+row['Name']+" in "+ row['Address']+" has been rated "+str(row['Rating'])+"\n"	
+					return[SlotSet("res_restaurant", response)]
 
-            if budget_code == "cheap":
-                budget_higher_limit = 300
-            elif budget_code == "moderate":
-                budget_lower_limit = 300
-                budget_higher_limit = 700
-            else:
-                budget_lower_limit = 700
-                budget_higher_limit = 5000
-
-            print ("Lower limit is:", budget_lower_limit)
-            print ("Higher limit is:", budget_higher_limit)
-
-            if str(loc) not in (settings.TIER_1 or settings.TIER_2):
-                response = "We do not operate in that area yet"
-
-            else:
-                location_detail=zomato.get_location(loc, 1)
-                d1 = json.loads(location_detail)
-                lat=d1["location_suggestions"][0]["latitude"]
-                lon=d1["location_suggestions"][0]["longitude"]
-                cuisines_dict={'bakery':5,'chinese':25,'cafe':30,'italian':55,'biryani':7,'north indian':50,'south indian':85,
-                               'American': 1, 'Mexican': 73}
-                results=zomato.restaurant_search("", lat, lon, str(cuisines_dict.get(cuisine)), 25)
-                # print ("Response of zomaoto: ", results)
-                try:
-                    d = json.loads(results)
-                except Exception:
-                    print ("Exception in loads going with encode")
-                    result = results.encode('utf8')
-                    d = json.loads(result)
-                response=""
-                print ("Response of zomaoto: ", d)
-                if d['results_found'] == 0:
-                    response= "no results"
-                else:
-                    for restaurant in d['restaurants']:
-                        print ("restaurant is: ", restaurant)
-                        if int(budget_lower_limit) <= int(restaurant['restaurant']['average_cost_for_two']) <= int(budget_higher_limit):
-                            print ("Restaurant in limit")
-                            if entries <= 10:
-                                print ("5 not found")
-                                entries += 1
-                                response=response+ "Found "+ restaurant['restaurant']['name']+ " in "+ \
-                                         restaurant['restaurant']['location']['address'] + " has been rated "+ \
-                                         str(restaurant['restaurant']['user_rating']['aggregate_rating']) + "\n"
+			send_msg_to_clinet(data_to_send=response, email_id_requested=email_id)
+			# dispatcher.utter_message("-----"+response)
+			return [SlotSet('location',loc)]
+		except Exception as e:
+			print ("Exception is : ", e)
 
 
-            send_msg_to_clinet(data_to_send=response, email_id_requested=email_id)
-            # dispatcher.utter_message("-----"+response)
-            return [SlotSet('location',loc)]
-        except Exception as e:
-            print ("Exception is : ", e)
-
-
+class ActionGoodBye(Action):
+	def name(self):
+		return 'action_bye'
+		
+	def run(self, dispatcher, tracker, domain):
+		dispatcher.utter_template("utter_goodbye",tracker)
+		return[AllSlotsReset()]
+			
+class ActionRestarted(Action): 	
+	def name(self): 		
+		return 'action_restarted' 	
+	def run(self, dispatcher, tracker, domain): 
+		return[Restarted()]
+		
+class ActionReset(Action): 	
+	def name(self): 		
+		return 'action_reset' 	
+	def run(self, dispatcher, tracker, domain): 		
+		return[AllSlotsReset()]

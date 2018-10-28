@@ -2,14 +2,35 @@ slots:
   location:
     type: text
   cuisine:
-    type: text
+    type: categorical
+    values:
+    - chinese
+    - italian
+    - south indian
+    - north indian
+    - mexican
+    - american
   budget:
+    type: categorical
+    values:
+    - <300
+    - 300-700 range
+    - >700
+  email:
     type: text
+  res_restaurant:
+      type: text
+  result_restaurants_details:
+      type: text
+  requested_slot:
+      type: unfeaturized
+
 
 entities:
 - location
 - cuisine
 - budget
+- email
 
 intents:
  - greet
@@ -17,9 +38,9 @@ intents:
  - deny
  - goodbye
  - thankyou
- - ask_email_address
  - restaurant_search
- - email_data
+ - send_email
+ - default
 
 
 templates:
@@ -31,39 +52,36 @@ templates:
     - "goodbye :("
     - "Bye-bye"
   utter_default:
-    - "default message"
+    - "Please repeat."
   utter_ask_cuisine: 
-    - text: "what kind of cuisine would you like?"
-      buttons:
-      - title: "Chinese"
-        payload: "Chinese"
-      - title: "Italian"
-        payload: "Italian"
-      - title: "South Indian"
-        payload: "South Indian"
-      - title: "North Indian"
-        payload: "North Indian"
-      - title: "Mexican"
-        payload: "Mexican"
-      - title: "American"
-        payload: "American"
+    - text: "what kind of cuisine would you like? \n 1. Chinese \n 2. Italian \n 3. South Indian \n 4. North Indian \n 5. Mexican \n 6. American"
+  utter_ask_budget: 
+    - text: "What's your budget? \n1. Lesser than Rs. 300 (<300)\n2. Rs. 300 to 700 (300-700 range)\n3. More than 700 (>700)\n"
   utter_ask_howcanhelp:
     - "how can I help you?"
+    - "how may I help you?"
   utter_ask_location:
-    - "In what location?"
-  utter_ask_budget:
-    - text: "What price range are you looking at?"
-      buttons:
-      - title: "Lesser than Rs. 300"
-        payload: "300"
-      - title: "Rs. 300 to 700"
-        payload: "700"
-      - title: "More than 700"
-        payload: "5000"
-  utter_ask_email_question:
-    - "Should I send top 10 restaurants to your email id?"
-  utter_ask_for_email_id:
-    - "On what email id should I send the data?"
+    - "In which city?"
+    - "In which city you want to search?"
+    - "May I know the city name?"
+  utter_ask_send_email:
+    - "Should I send you details of top 10 restaurants on email?"
+    - "Do you like me to send the top 10 details to your email?"
+  utter_ask_email:
+    - "On which email-id shall i send?"
+    - "What's your email-id?"
+  utter_invalid_location:
+    - "Sorry! we dont serve in {location}."
+  utter_invalid_cuisine:
+    - "Sorry! {cuisine} is not in the list. Please try again"
+  utter_no_restaurants_found:
+    - "Sorry! No restaurants found!"
+  utter_restaurant_search_results:
+    - "Found the following search results \n {res_restaurant}"
+  utter_email_sent_successfully:
+    - "Sent the email successfully to {email}"
+  utter_email_not_recognized:
+    - "Email not recognized - {email}. Please type agian"
 
 actions:
 - utter_greet
@@ -73,7 +91,17 @@ actions:
 - utter_ask_location
 - utter_ask_cuisine
 - utter_ask_budget
-- utter_ask_email_question
-- utter_ask_for_email_id
+- utter_ask_email
+- utter_ask_send_email
+- utter_invalid_location
+- utter_invalid_cuisine
+- utter_no_restaurants_found
+- utter_restaurant_search_results
+- utter_email_sent_successfully
+- utter_email_not_recognized
 - actions.ActionSearchRestaurants
+- actions.ActionFetchFormAndData
 - actions.ActionSendRestaurantData
+- actions.ActionRestarted
+- actions.ActionGoodBye
+- actions.ActionReset
